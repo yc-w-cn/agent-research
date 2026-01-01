@@ -20,7 +20,7 @@ export default function ContentPage({
     <div className="min-h-screen bg-white text-black">
       <Navigation />
 
-      <main className="mx-auto max-w-5xl px-8 py-16">
+      <main className="mx-auto max-w-5xl px-8 pt-16">
         <header className="mb-16">
           <h1 className="text-5xl font-bold tracking-tight leading-none">
             {title}
