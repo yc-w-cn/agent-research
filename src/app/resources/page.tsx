@@ -30,9 +30,9 @@ export default async function ResourcesPage() {
 
         <header className="mb-24">
           <h1 className="text-8xl font-bold tracking-tight leading-none">
-            资源
+            相关
             <br />
-            <span className="text-zinc-400">导航</span>
+            <span className="text-zinc-400">资源</span>
           </h1>
           <p className="mt-8 text-xl text-zinc-600 max-w-xl">
             汇总 Agent 研究所需的各类资源
