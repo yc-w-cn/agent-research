@@ -8,6 +8,7 @@ interface ContentPageProps {
   description: string;
   items: ContentItem[];
   renderItem: (item: ContentItem) => React.ReactNode;
+  searchPlaceholder?: string;
 }
 
 export default function ContentPage({
@@ -15,6 +16,7 @@ export default function ContentPage({
   description,
   items,
   renderItem,
+  searchPlaceholder,
 }: ContentPageProps) {
   return (
     <div className="min-h-screen bg-white text-black">
@@ -27,7 +29,7 @@ export default function ContentPage({
           </h1>
           <p className="mt-6 text-lg text-zinc-600 max-w-xl">{description}</p>
           <div className="mt-8 max-w-2xl">
-            <SearchBar items={items} />
+            <SearchBar items={items} placeholder={searchPlaceholder} />
           </div>
         </header>
 

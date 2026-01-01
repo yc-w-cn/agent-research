@@ -1,3 +1,5 @@
+import { generateHeadingId } from '@/lib/heading-id';
+
 export interface TocItem {
   id: string;
   level: number;
@@ -12,10 +14,7 @@ export function parseContentToToc(content: string): TocItem[] {
   while ((match = headingRegex.exec(content)) !== null) {
     const level = match[1].length;
     const title = match[2].trim();
-    const id = title
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-');
+    const id = generateHeadingId(title);
 
     items.push({ id, level, title });
   }

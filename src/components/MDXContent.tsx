@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 
+import { generateHeadingId } from '@/lib/heading-id';
+
 type MDXComponentProps = {
   children?: React.ReactNode;
   [key: string]: unknown;
@@ -13,24 +15,42 @@ type MDXComponentProps = {
 type MDXComponents = Record<string, React.ComponentType<MDXComponentProps>>;
 
 const mdxComponents: MDXComponents = {
-  h1: (props: { children?: React.ReactNode }) => (
-    <h1 className="text-4xl font-bold mt-12 mb-6 text-black">
-      {props.children}
-    </h1>
-  ),
-  h2: (props: { children?: React.ReactNode }) => (
-    <h2 className="text-3xl font-bold mt-10 mb-5 text-black">
-      {props.children}
-    </h2>
-  ),
-  h3: (props: { children?: React.ReactNode }) => (
-    <h3 className="text-2xl font-bold mt-8 mb-4 text-black">
-      {props.children}
-    </h3>
-  ),
-  h4: (props: { children?: React.ReactNode }) => (
-    <h4 className="text-xl font-bold mt-6 mb-3 text-black">{props.children}</h4>
-  ),
+  h1: (props: { children?: React.ReactNode }) => {
+    const text = typeof props.children === 'string' ? props.children : '';
+    const id = generateHeadingId(text);
+    return (
+      <h1 id={id} className="text-4xl font-bold mt-12 mb-6 text-black">
+        {props.children}
+      </h1>
+    );
+  },
+  h2: (props: { children?: React.ReactNode }) => {
+    const text = typeof props.children === 'string' ? props.children : '';
+    const id = generateHeadingId(text);
+    return (
+      <h2 id={id} className="text-3xl font-bold mt-10 mb-5 text-black">
+        {props.children}
+      </h2>
+    );
+  },
+  h3: (props: { children?: React.ReactNode }) => {
+    const text = typeof props.children === 'string' ? props.children : '';
+    const id = generateHeadingId(text);
+    return (
+      <h3 id={id} className="text-2xl font-bold mt-8 mb-4 text-black">
+        {props.children}
+      </h3>
+    );
+  },
+  h4: (props: { children?: React.ReactNode }) => {
+    const text = typeof props.children === 'string' ? props.children : '';
+    const id = generateHeadingId(text);
+    return (
+      <h4 id={id} className="text-xl font-bold mt-6 mb-3 text-black">
+        {props.children}
+      </h4>
+    );
+  },
   p: (props: { children?: React.ReactNode }) => (
     <p className="text-lg leading-relaxed mb-6 text-black">{props.children}</p>
   ),
