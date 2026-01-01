@@ -1,10 +1,10 @@
 'use client';
 
+import MDXContent from '@/components/MDXContent';
 import Navigation from '@/components/Navigation';
 import { ContentData } from '@/lib/content';
 
-import ContentMain from './ContentMain';
-import ContentSidebar from './ContentSidebar';
+import ContentTableOfContents from './ContentTableOfContents';
 import ContentTabs from './ContentTabs';
 
 interface ContentDetailPageProps {
@@ -23,12 +23,15 @@ export default function ContentDetailPage({ content }: ContentDetailPageProps) {
               {content.title}
             </h1>
           </header>
-
           <ContentTabs content={content} />
-
-          <ContentSidebar content={content} />
-
-          <ContentMain content={content} />
+          <aside className="col-span-12 lg:col-span-4">
+            <ContentTableOfContents content={content.content} />
+          </aside>
+          <main className="col-span-12 lg:col-span-8">
+            <div className="prose prose-lg max-w-none">
+              <MDXContent content={content.content} />
+            </div>
+          </main>
         </article>
       </div>
     </div>
