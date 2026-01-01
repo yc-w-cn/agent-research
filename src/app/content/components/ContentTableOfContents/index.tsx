@@ -18,6 +18,20 @@ export default function ContentTableOfContents({
     setTocItems(items);
   }, [content]);
 
+  const handleTocClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string,
+  ) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   if (tocItems.length === 0) {
     return null;
   }
@@ -33,6 +47,9 @@ export default function ContentTableOfContents({
             key={`${item.id}-${index}`}
             href={`#${item.id}`}
             className={getTocItemClassName(item.level)}
+            onClick={(e) => {
+              handleTocClick(e, item.id);
+            }}
           >
             {item.title}
           </a>
