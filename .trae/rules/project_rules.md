@@ -4,3 +4,4 @@
 4. 添加 shadcn 组件的方式：pnpm dlx shadcn@latest add button
 5. 设计风格文档：docs/SWISS_DESIGN_STYLE.md
 6. 网站强制要求静态导出，不允许使用nextjs任何服务器端开发范式
+7. 禁止使用 emoji
