@@ -23,11 +23,11 @@ export default function ContentTableOfContents({
   }
 
   return (
-    <div className="border-l-2 border-black pl-6">
-      <div className="text-sm text-zinc-500 mb-4 uppercase tracking-wider">
-        目录
+    <div className="py-8 pr-8">
+      <div className="text-xs text-zinc-400 mb-8 tracking-[0.2em] font-bold">
+        CONTENTS
       </div>
-      <nav className="space-y-2">
+      <nav className="space-y-4">
         {tocItems.map((item, index) => (
           <a
             key={`${item.id}-${index}`}

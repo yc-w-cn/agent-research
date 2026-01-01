@@ -24,7 +24,8 @@ export function parseContentToToc(content: string): TocItem[] {
 }
 
 export function getTocItemClassName(level: number): string {
-  const baseClass = 'block hover:text-zinc-600 transition-colors';
+  const baseClass =
+    'block hover:text-zinc-600 transition-colors leading-relaxed';
 
   if (level === 1) {
     return `${baseClass} text-base font-medium`;
@@ -34,5 +35,5 @@ export function getTocItemClassName(level: number): string {
     return `${baseClass} text-sm ml-4`;
   }
 
-  return `${baseClass} text-xs ml-8`;
+  return `${baseClass} text-sm ml-8 text-zinc-600`;
 }
