@@ -10,10 +10,12 @@ interface CodeItemProps {
 
 export default function CodeItem({ data }: CodeItemProps) {
   return (
-    <Link href={`/code/${data.slug}`} className="block">
-      <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-        {data.title}
-      </h3>
+    <div className="block">
+      <Link href={`/code/${data.slug}`} className="block">
+        <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
+          {data.title}
+        </h3>
+      </Link>
       <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
         <span>{dayjs(data.date).format('YYYY-MM-DD')}</span>
         {data.github && (
@@ -42,6 +44,6 @@ export default function CodeItem({ data }: CodeItemProps) {
           ))}
         </div>
       )}
-    </Link>
+    </div>
   );
 }
