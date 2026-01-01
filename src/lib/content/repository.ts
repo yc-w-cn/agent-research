@@ -49,6 +49,7 @@ function ensureMapInitialized() {
 
 export async function getContentByType(
   type: ContentType,
+  includeOriginal = true,
 ): Promise<ContentItem[]> {
   ensureMapInitialized();
 
@@ -70,7 +71,7 @@ export async function getContentByType(
       (type === 'code' && item.github) ||
       (type === 'resource' && item.related && item.related.length > 0);
 
-    if (shouldInclude) {
+    if (shouldInclude && (includeOriginal || !item.related)) {
       items.push(item);
     }
 

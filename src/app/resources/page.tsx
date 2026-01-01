@@ -3,7 +3,7 @@ import ResourceItem from '@/components/ResourceItem';
 import { getContentByType } from '@/lib/content';
 
 export default async function ResourcesPage() {
-  const resources = await getContentByType('resource');
+  const resources = await getContentByType('resource', false); // false 表示不包含原始内容项
 
   return (
     <ContentPage
