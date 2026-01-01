@@ -1,8 +1,8 @@
-import Link from 'next/link';
-
 import dayjs from 'dayjs';
 
 import { ContentItem } from '@/lib/content';
+
+import Card from './Card';
 
 interface PaperItemProps {
   data: ContentItem;
@@ -10,12 +10,7 @@ interface PaperItemProps {
 
 export default function PaperItem({ data }: PaperItemProps) {
   return (
-    <div className="bg-zinc-50 p-4">
-      <Link href={`/papers/${data.slug}`} className="block">
-        <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-          {data.title}
-        </h3>
-      </Link>
+    <Card data={data} href={`/papers/${data.slug}`}>
       <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
         <span>{dayjs(data.date).format('YYYY-MM-DD')}</span>
         {data.arxiv && (
@@ -39,6 +34,6 @@ export default function PaperItem({ data }: PaperItemProps) {
           {data.arxiv.description}
         </div>
       )}
-    </div>
+    </Card>
   );
 }

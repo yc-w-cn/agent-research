@@ -1,8 +1,8 @@
-import Link from 'next/link';
-
 import dayjs from 'dayjs';
 
 import { ContentItem } from '@/lib/content';
+
+import Card from './Card';
 
 interface CodeItemProps {
   data: ContentItem;
@@ -10,12 +10,7 @@ interface CodeItemProps {
 
 export default function CodeItem({ data }: CodeItemProps) {
   return (
-    <div className="block bg-zinc-50 p-4">
-      <Link href={`/code/${data.slug}`} className="block">
-        <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-          {data.title}
-        </h3>
-      </Link>
+    <Card data={data} href={`/code/${data.slug}`}>
       <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
         <span>{dayjs(data.date).format('YYYY-MM-DD')}</span>
         {data.github && (
@@ -35,17 +30,17 @@ export default function CodeItem({ data }: CodeItemProps) {
         )}
       </div>
       {data.github?.tags && data.github.tags.length > 0 && (
-        <div className="mt-2 flex flex-wrap gap-2">
+        <div className="mt-3 flex flex-wrap gap-2">
           {data.github.tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs px-2 py-1 bg-zinc-100 text-zinc-600"
+              className="text-xs px-3 py-1.5 border border-zinc-200 text-zinc-700 hover:border-zinc-300 transition-colors"
             >
               {tag}
             </span>
           ))}
         </div>
       )}
-    </div>
+    </Card>
   );
 }

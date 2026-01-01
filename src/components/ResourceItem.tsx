@@ -1,8 +1,8 @@
-import Link from 'next/link';
-
 import dayjs from 'dayjs';
 
 import { ContentItem } from '@/lib/content';
+
+import Card from './Card';
 
 interface ResourceItemProps {
   data: ContentItem;
@@ -10,12 +10,7 @@ interface ResourceItemProps {
 
 export default function ResourceItem({ data }: ResourceItemProps) {
   return (
-    <div className="bg-zinc-50 p-4">
-      <Link href={`/resources/${data.slug}`} className="block">
-        <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-          {data.title}
-        </h3>
-      </Link>
+    <Card data={data} href={`/resources/${data.slug}`}>
       <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
         <span>{dayjs(data.date).format('YYYY-MM-DD')}</span>
       </div>
@@ -41,6 +36,6 @@ export default function ResourceItem({ data }: ResourceItemProps) {
           ))}
         </div>
       )}
-    </div>
+    </Card>
   );
 }
