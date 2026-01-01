@@ -1,64 +1,58 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-white text-black">
+      <main className="mx-auto max-w-5xl px-8 py-32">
+        <header className="mb-24">
+          <h1 className="text-8xl font-bold tracking-tight leading-none">
+            Agent
+            <br />
+            <span className="text-zinc-400">Research</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-8 text-xl text-zinc-600 max-w-xl">
+            探索 Agent 领域学术论文与代码资源库
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        </header>
+
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="space-y-4">
+            <div className="h-1 w-12 bg-black" />
+            <h2 className="text-2xl font-bold tracking-tight">学术论文</h2>
+            <p className="text-base text-zinc-600 leading-relaxed">
+              探索最新的 Agent 领域研究成果。
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="h-1 w-12 bg-black" />
+            <h2 className="text-2xl font-bold tracking-tight">开源代码</h2>
+            <p className="text-base text-zinc-600 leading-relaxed">
+              收集整理高质量的 Agent 相关开源项目，包括框架、工具和实现示例。
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="h-1 w-12 bg-black" />
+            <h2 className="text-2xl font-bold tracking-tight">资源导航</h2>
+            <p className="text-base text-zinc-600 leading-relaxed">
+              汇总 Agent 研究所需的各类资源，包括数据集、评测基准和教程文档。
+            </p>
+          </div>
+        </section>
+
+        <footer className="mt-32 pt-16 border-t border-zinc-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-zinc-400">2026</p>
+              <p className="text-lg font-bold">Agent Research</p>
+            </div>
+            <div className="flex gap-12 text-sm text-zinc-600">
+              <span>Research</span>
+              <span>Code</span>
+              <span>Resources</span>
+              <span>About</span>
+            </div>
+          </div>
+        </footer>
       </main>
     </div>
   );
