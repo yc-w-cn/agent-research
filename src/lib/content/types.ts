@@ -7,6 +7,7 @@ export interface ArxivDescription {
 
 export interface ArxivInfo {
   id: string;
+  title?: string;
   subjects?: string[];
   description?: string | ArxivDescription;
 }
@@ -42,7 +43,7 @@ export interface MdxFrontmatter {
   title?: string;
   categories?: string[];
   date?: string | Date;
-  arxiv?: ArxivInfo | string;
-  github?: GithubInfo | string;
+  arxiv?: ArxivInfo;
+  github?: GithubInfo;
   related?: RelatedResource[];
 }

@@ -11,29 +11,18 @@ export function buildContentItem(
     date: data.date ? String(data.date) : '',
     arxiv: data.arxiv
       ? {
-          id:
-            typeof data.arxiv === 'string'
-              ? data.arxiv
-              : data.arxiv.id || String(data.arxiv),
-          subjects:
-            typeof data.arxiv === 'string' ? [] : data.arxiv.subjects || [],
-          description:
-            typeof data.arxiv === 'string' ? undefined : data.arxiv.description,
+          id: data.arxiv.id,
+          title: data.arxiv.title || '',
+          subjects: data.arxiv.subjects || [],
+          description: data.arxiv.description,
         }
       : undefined,
     github: data.github
       ? {
-          name:
-            typeof data.github === 'string'
-              ? data.github
-              : data.github.name || String(data.github),
-          description:
-            typeof data.github === 'string'
-              ? undefined
-              : data.github.description,
-          stars:
-            typeof data.github === 'string' ? undefined : data.github.stars,
-          tags: typeof data.github === 'string' ? [] : data.github.tags || [],
+          name: data.github.name,
+          description: data.github.description,
+          stars: data.github.stars,
+          tags: data.github.tags || [],
         }
       : undefined,
     related: data.related || [],
@@ -52,29 +41,17 @@ export function buildContentData(
     date: data.date ? String(data.date) : '',
     arxiv: data.arxiv
       ? {
-          id:
-            typeof data.arxiv === 'string'
-              ? data.arxiv
-              : data.arxiv.id || String(data.arxiv),
-          subjects:
-            typeof data.arxiv === 'string' ? [] : data.arxiv.subjects || [],
-          description:
-            typeof data.arxiv === 'string' ? undefined : data.arxiv.description,
+          id: data.arxiv.id,
+          subjects: data.arxiv.subjects || [],
+          description: data.arxiv.description,
         }
       : undefined,
     github: data.github
       ? {
-          name:
-            typeof data.github === 'string'
-              ? data.github
-              : data.github.name || String(data.github),
-          description:
-            typeof data.github === 'string'
-              ? undefined
-              : data.github.description,
-          stars:
-            typeof data.github === 'string' ? undefined : data.github.stars,
-          tags: typeof data.github === 'string' ? [] : data.github.tags || [],
+          name: data.github.name,
+          description: data.github.description,
+          stars: data.github.stars,
+          tags: data.github.tags || [],
         }
       : undefined,
     related: data.related || [],

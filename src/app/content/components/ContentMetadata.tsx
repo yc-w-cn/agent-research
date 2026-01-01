@@ -21,35 +21,6 @@ export default function ContentMetadata({ content }: ContentMetadataProps) {
         </div>
       </div>
 
-      {content.arxiv && (
-        <div>
-          <div className="text-sm text-zinc-500 mb-2 uppercase tracking-wider">
-            论文
-          </div>
-          <a
-            href={`https://arxiv.org/abs/${content.arxiv.id}`}
-            className="text-base font-medium hover:text-zinc-600 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            arXiv:{content.arxiv.id}
-          </a>
-          {content.arxiv.subjects &&
-            content.arxiv.subjects.length > 0 && (
-              <div className="mt-3 flex flex-wrap gap-2">
-                {content.arxiv.subjects.map((subject) => (
-                  <span
-                    key={subject}
-                    className="text-xs px-3 py-1.5 bg-zinc-100 text-zinc-700"
-                  >
-                    {subject}
-                  </span>
-                ))}
-              </div>
-            )}
-        </div>
-      )}
-
       {content.github && (
         <div>
           <div className="text-sm text-zinc-500 mb-2 uppercase tracking-wider">

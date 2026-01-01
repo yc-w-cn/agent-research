@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation';
 import { ContentData } from '@/lib/content';
 
 import ContentMain from './ContentMain';
+import ContentPaper from './ContentPaper';
 import ContentSidebar from './ContentSidebar';
 
 interface ContentDetailPageProps {
@@ -22,6 +23,8 @@ export default function ContentDetailPage({ content }: ContentDetailPageProps) {
               {content.title}
             </h1>
           </header>
+
+          <ContentPaper content={content} />
 
           <ContentSidebar content={content} />
 
