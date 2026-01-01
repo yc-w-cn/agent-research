@@ -60,6 +60,8 @@ export default function PaperContent({ content }: PaperContentProps) {
             <DetailLanguageSwitcher
               hasZhContent={hasZhDescription}
               hasEnContent={hasEnDescription}
+              language={language}
+              setLanguage={setLanguage}
             />
           )}
         </div>
