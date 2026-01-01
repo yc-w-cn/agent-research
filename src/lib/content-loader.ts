@@ -3,9 +3,45 @@ import path from 'path';
 
 import matter from 'gray-matter';
 
-import type { ContentData, ContentItem, ContentType } from './content';
+import type {
+  ContentData,
+  ContentItem,
+  ContentType,
+  RelatedResource,
+} from './content';
 
 const CONTENT_DIR = path.join(process.cwd(), 'src', 'content');
+
+export const relatedResourcesMap = new Map<
+  string,
+  { parentSlug: string; related: RelatedResource }
+>();
+
+function buildRelatedResourcesMap() {
+  if (!fs.existsSync(CONTENT_DIR)) {
+    return;
+  }
+
+  const files = fs.readdirSync(CONTENT_DIR);
+
+  for (const file of files) {
+    if (file === 'index.mdx' || !file.endsWith('.mdx')) continue;
+
+    const filePath = path.join(CONTENT_DIR, file);
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const { data } = matter(fileContent);
+    const slug = file.replace('.mdx', '');
+
+    if (data.related && Array.isArray(data.related)) {
+      data.related.forEach((related: RelatedResource, index: number) => {
+        const relatedSlug = `${slug}-related-${index}`;
+        relatedResourcesMap.set(relatedSlug, { parentSlug: slug, related });
+      });
+    }
+  }
+}
+
+buildRelatedResourcesMap();
 
 export async function getContentByType(
   type: ContentType,
@@ -52,8 +88,20 @@ export async function getContentByType(
       (type === 'code' && item.github) ||
       (type === 'resource' && item.related && item.related.length > 0);
 
-    if (shouldInclude) {
+    if (shouldInclude && type !== 'resource') {
       items.push(item);
+    }
+
+    if (type === 'resource' && item.related && item.related.length > 0) {
+      item.related.forEach((related, index) => {
+        items.push({
+          slug: `${item.slug}-related-${index}`,
+          title: related.title,
+          categories: item.categories,
+          date: item.date,
+          related: undefined,
+        });
+      });
     }
   }
 
@@ -65,6 +113,22 @@ export async function getContentByType(
 export async function getContentBySlug(
   slug: string,
 ): Promise<ContentData | null> {
+  const relatedInfo = relatedResourcesMap.get(slug);
+
+  if (relatedInfo) {
+    const parentContent = await getContentBySlug(relatedInfo.parentSlug);
+    if (!parentContent) {
+      return null;
+    }
+
+    return {
+      ...parentContent,
+      slug,
+      title: relatedInfo.related.title,
+      content: relatedInfo.related.description || '',
+    };
+  }
+
   const filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
 
   if (!fs.existsSync(filePath)) {
@@ -97,6 +161,11 @@ export async function getContentBySlug(
     related: data.related || [],
     content,
   };
+}
+
+export function getRelatedResourceUrl(slug: string): string | null {
+  const relatedInfo = relatedResourcesMap.get(slug);
+  return relatedInfo?.related.url || null;
 }
 
 export async function getAllContent(): Promise<ContentItem[]> {

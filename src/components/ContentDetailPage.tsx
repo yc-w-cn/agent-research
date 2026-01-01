@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 
 import { ContentData } from '@/lib/content';
+import { getRelatedResourceUrl } from '@/lib/content-loader';
 
 import MDXContent from './MDXContent';
 import Navigation from './Navigation';
@@ -10,6 +11,8 @@ interface ContentDetailPageProps {
 }
 
 export default function ContentDetailPage({ content }: ContentDetailPageProps) {
+  const externalUrl = getRelatedResourceUrl(content.slug);
+
   return (
     <div className="min-h-screen bg-white text-black">
       <Navigation />
@@ -58,6 +61,18 @@ export default function ContentDetailPage({ content }: ContentDetailPageProps) {
                     {tag}
                   </span>
                 ))}
+              </div>
+            )}
+            {externalUrl && (
+              <div className="mt-6">
+                <a
+                  href={externalUrl}
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white hover:bg-zinc-800 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  访问链接
+                </a>
               </div>
             )}
           </header>
