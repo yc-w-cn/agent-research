@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-interface TocItem {
-  id: string;
-  level: number;
-  title: string;
-}
+import { getTocItemClassName, parseContentToToc, type TocItem } from './utils';
 
 interface ContentTableOfContentsProps {
   content: string;
@@ -18,21 +14,7 @@ export default function ContentTableOfContents({
   const [tocItems, setTocItems] = useState<TocItem[]>([]);
 
   useEffect(() => {
-    const items: TocItem[] = [];
-    const headingRegex = /^(#{1,4})\s+(.+)$/gm;
-    let match;
-
-    while ((match = headingRegex.exec(content)) !== null) {
-      const level = match[1].length;
-      const title = match[2].trim();
-      const id = title
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-');
-
-      items.push({ id, level, title });
-    }
-
+    const items = parseContentToToc(content);
     setTocItems(items);
   }, [content]);
 
@@ -50,13 +32,7 @@ export default function ContentTableOfContents({
           <a
             key={`${item.id}-${index}`}
             href={`#${item.id}`}
-            className={`block hover:text-zinc-600 transition-colors ${
-              item.level === 1
-                ? 'text-base font-medium'
-                : item.level === 2
-                  ? 'text-sm ml-4'
-                  : 'text-xs ml-8'
-            }`}
+            className={getTocItemClassName(item.level)}
           >
             {item.title}
           </a>
