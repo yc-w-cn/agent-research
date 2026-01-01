@@ -8,6 +8,7 @@ import { ContentItem } from '@/lib/content';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 import Card from './Card';
+import DescriptionText from './DescriptionText';
 import LanguageSwitcher from './LanguageSwitcher';
 import Tags from './Tags';
 
@@ -68,7 +69,7 @@ export default function PaperItem({ data }: PaperItemProps) {
       </div>
       {description && (
         <div className="mt-4 text-sm text-zinc-700">
-          <p>{description}</p>
+          <DescriptionText text={description} />
         </div>
       )}
       {data.arxiv?.subjects && data.arxiv.subjects.length > 0 && (
