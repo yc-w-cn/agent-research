@@ -7,7 +7,8 @@ export interface ArxivInfo {
 }
 
 export interface GithubInfo {
-  repo: string;
+  name: string;
+  description?: string;
   stars?: number;
   tags?: string[];
 }

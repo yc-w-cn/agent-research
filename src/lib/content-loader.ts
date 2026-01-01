@@ -38,7 +38,8 @@ export async function getContentByType(
         : undefined,
       github: data.github
         ? {
-            repo: data.github.repo || String(data.github),
+            name: data.github.name || String(data.github),
+            description: data.github.description,
             stars: data.github.stars,
             tags: data.github.tags || [],
           }
@@ -87,7 +88,8 @@ export async function getContentBySlug(
       : undefined,
     github: data.github
       ? {
-          repo: data.github.repo || String(data.github),
+          name: data.github.name || String(data.github),
+          description: data.github.description,
           stars: data.github.stars,
           tags: data.github.tags || [],
         }
