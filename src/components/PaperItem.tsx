@@ -1,11 +1,11 @@
 'use client';
 
+import { useState } from 'react';
+
 import dayjs from 'dayjs';
 
 import { getArxivSubjectName } from '@/lib/arxiv-subjects';
 import { ContentItem } from '@/lib/content';
-
-import { useLanguage } from '@/contexts/LanguageContext';
 
 import Card from './Card';
 import DescriptionText from './DescriptionText';
@@ -17,7 +17,7 @@ interface PaperItemProps {
 }
 
 export default function PaperItem({ data }: PaperItemProps) {
-  const { language } = useLanguage();
+  const [language, setLanguage] = useState<'en' | 'zh'>('zh');
 
   const hasZhContent = Boolean(
     typeof data.arxiv?.description === 'object'
@@ -52,6 +52,8 @@ export default function PaperItem({ data }: PaperItemProps) {
         <LanguageSwitcher
           hasZhContent={hasZhContent}
           hasEnContent={hasEnContent}
+          language={language}
+          setLanguage={setLanguage}
         />
       </div>
       <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">

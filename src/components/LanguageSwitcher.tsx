@@ -2,19 +2,21 @@
 
 import { cn } from '@/lib/utils';
 
-import { Language, useLanguage } from '@/contexts/LanguageContext';
+import { Language } from '@/contexts/LanguageContext';
 
 interface LanguageSwitcherProps {
   hasZhContent: boolean;
   hasEnContent: boolean;
+  language: Language;
+  setLanguage: (lang: Language) => void;
 }
 
 export default function LanguageSwitcher({
   hasZhContent,
   hasEnContent,
+  language,
+  setLanguage,
 }: LanguageSwitcherProps) {
-  const { language, setLanguage } = useLanguage();
-
   const handleLanguageChange = (lang: Language) => {
     if ((lang === 'zh' && hasZhContent) || (lang === 'en' && hasEnContent)) {
       setLanguage(lang);
