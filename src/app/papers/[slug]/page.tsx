@@ -22,11 +22,5 @@ export default async function PaperDetailPage({
     notFound();
   }
 
-  return (
-    <ContentDetailPage
-      content={content}
-      backHref="/papers"
-      backText="返回论文列表"
-    />
-  );
+  return <ContentDetailPage content={content} />;
 }

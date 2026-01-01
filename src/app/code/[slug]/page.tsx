@@ -22,11 +22,5 @@ export default async function CodeDetailPage({
     notFound();
   }
 
-  return (
-    <ContentDetailPage
-      content={content}
-      backHref="/code"
-      backText="返回代码列表"
-    />
-  );
+  return <ContentDetailPage content={content} />;
 }

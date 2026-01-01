@@ -22,11 +22,5 @@ export default async function ResourceDetailPage({
     notFound();
   }
 
-  return (
-    <ContentDetailPage
-      content={content}
-      backHref="/resources"
-      backText="返回资源列表"
-    />
-  );
+  return <ContentDetailPage content={content} />;
 }

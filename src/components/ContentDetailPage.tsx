@@ -1,32 +1,20 @@
-import Link from 'next/link';
-
 import dayjs from 'dayjs';
 
 import { ContentData } from '@/lib/content';
 
 import MDXContent from './MDXContent';
+import Navigation from './Navigation';
 
 interface ContentDetailPageProps {
   content: ContentData;
-  backHref: string;
-  backText: string;
 }
 
-export default function ContentDetailPage({
-  content,
-  backHref,
-  backText,
-}: ContentDetailPageProps) {
+export default function ContentDetailPage({ content }: ContentDetailPageProps) {
   return (
     <div className="min-h-screen bg-white text-black">
-      <main className="mx-auto max-w-5xl px-8 py-32">
-        <Link
-          href={backHref}
-          className="inline-block mb-12 text-zinc-600 hover:text-black transition-colors"
-        >
-          ← {backText}
-        </Link>
+      <Navigation />
 
+      <main className="mx-auto max-w-5xl px-8 py-16">
         <article>
           <header className="mb-16">
             <h1 className="text-5xl font-bold tracking-tight leading-none mb-6">
