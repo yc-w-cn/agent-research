@@ -130,13 +130,52 @@
 - 确保所有数据准确无误
 - 标注数据来源
 
-### 2. 数据完整性
+### 2. GitHub 星星数要求（重要）
+
+**GitHub 仓库的星星数必须使用 GitHub API 获取真实数据，严禁编造或使用估算值。**
+
+获取方法：
+```bash
+curl -s "https://api.github.com/repos/{owner}/{repo}" | grep '"stargazers_count"'
+```
+
+示例：
+```bash
+curl -s "https://api.github.com/repos/volcengine/MineContext" | grep '"stargazers_count"'
+```
+
+注意事项：
+- 每次创建或更新内容时，必须通过 API 获取最新的星星数
+- 不能使用旧数据或估算值
+- 如果 API 调用失败，应将星星数字段留空，而不是编造数据
+
+### 3. GitHub 标签要求（重要）
+
+**GitHub 仓库的标签必须使用 GitHub API 获取真实的 topics 数据，严禁编造或使用自定义标签。**
+
+获取方法：
+```bash
+curl -s "https://api.github.com/repos/{owner}/{repo}" | grep -A 20 '"topics"'
+```
+
+示例：
+```bash
+curl -s "https://api.github.com/repos/volcengine/MineContext" | grep -A 20 '"topics"'
+```
+
+注意事项：
+- 每次创建或更新内容时，必须通过 API 获取最新的 topics 列表
+- 不能使用自定义标签或估算标签
+- 如果 API 调用失败，应将 tags 字段留空，而不是编造数据
+- 保持 topics 的原始顺序和格式
+
+### 4. 数据完整性
 
 - 尽可能收集完整的信息
 - 确保数据之间的关联性
 - 补充缺失的关键信息
 
-### 3. 数据时效性
+### 5. 数据时效性
 
 - 检查信息的时效性
 - 确保是最新的信息

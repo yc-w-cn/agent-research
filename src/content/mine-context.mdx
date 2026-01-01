@@ -1,0 +1,154 @@
+---
+title: MineContext - 主动上下文感知 AI 助手
+categories:
+  - llm-agent
+  - tool-use
+date: 2026-01-01
+github:
+  name: volcengine/MineContext
+  description: MineContext is your proactive context-aware AI partner（Context-Engineering+ChatGPT Pulse）
+  stars: 4668
+  tags:
+    - agent
+    - context-engineering
+    - electron
+    - embedding-models
+    - javascript
+    - memory
+    - proactive-ai
+    - python
+    - python3
+    - rag
+    - react
+    - typescript
+    - vector-database
+    - vision-language-model
+related:
+  - title: MineContext GitHub 仓库
+    url: https://github.com/volcengine/MineContext
+    description: MineContext 官方 GitHub 仓库
+---
+
+## 概述
+
+MineContext 是一个主动的上下文感知 AI 助手。通过利用截图和内容理解（未来支持多源多模态信息，包括文档、图像、视频、代码和外部应用数据），它能够看见并理解用户的数字世界上下文。基于底层的上下文工程框架，它主动推送高质量信息，如洞察、每日/每周摘要、待办事项列表和活动记录。
+
+## 核心内容
+
+MineContext 专注于四个关键特性：轻松收集、智能重现、主动推送和上下文工程架构。
+
+### 主要特性
+
+1. 轻松收集：能够收集和处理大量上下文，设计存储管理使得广泛收集而不增加心理负担
+2. 主动推送：在日常使用中主动推送关键信息和洞察，从上下文中提取摘要内容（如每日/每周摘要、提示和待办事项），直接推送到主页
+3. 智能重现：在创作时智能地重现相关有用的上下文，确保辅助创作而不被信息淹没
+4. 上下文工程架构：支持多源多模态数据的完整生命周期——从捕获、处理和存储到管理、检索和消费——能够生成六种类型的智能上下文
+
+## 关键特性
+
+### 隐私保护
+
+MineContext 高度重视用户隐私。默认情况下，所有数据都存储在本地路径，以确保隐私和安全。
+
+本地存储路径：
+```
+~/Library/Application Support/MineContext/Data
+```
+
+### 本地 AI 模型
+
+支持基于 OpenAI API 协议的自定义模型服务。可以在 MineContext 中使用完全本地模型，确保任何数据都不会离开本地环境。
+
+推荐使用 LMStudio 运行本地模型，它提供简单的界面和强大的功能，帮助快速部署和管理。
+
+### 多模型支持
+
+目前支持来自 Doubao、OpenAI 和自定义模型的服务。这包括任何兼容 OpenAI API 格式的本地模型或第三方模型服务。
+
+推荐使用 Doubao 模型，在成本和性能之间取得平衡。需要在模型激活管理界面激活两个模型：
+
+- 视觉语言模型：Doubao-Seed-1.6-flash
+- 嵌入模型：Doubao-embedding-large
+
+## 技术架构
+
+### 前端架构
+
+核心技术栈：
+- Electron + React
+- 本地优先设计
+
+核心架构：
+- 跨平台桌面应用
+- 屏幕监控和截图功能
+- 本地数据存储和管理
+
+### 后端架构
+
+核心架构组件：
+- Python + FastAPI
+- 多模态数据处理
+- 上下文工程框架
+
+层职责：
+- 数据采集层：屏幕截图、文档解析
+- 数据处理层：内容理解、特征提取
+- 存储管理层：本地存储、索引构建
+- 检索服务层：上下文检索、智能推荐
+- 应用服务层：主动推送、摘要生成
+
+## 使用指南
+
+### 安装
+
+点击 GitHub Latest Release 下载最新版本。
+
+注意：从 v0.1.5 开始，MineContext 支持 Apple 公证，不再需要禁用隔离属性。如果使用旧版本，请参考以前的文档说明。
+
+### 配置
+
+应用启动后，请按照提示输入 API 密钥。
+
+首次运行时，应用需要安装后端环境，可能需要大约两分钟。
+
+### 开始录制
+
+进入 [屏幕监控] 启用系统屏幕共享权限。完成设置后，需要重启应用程序以使更改生效。
+
+重启应用程序后，请先在 [设置] 中设置屏幕共享区域，然后点击 [开始录制] 开始截图。
+
+## 实践案例
+
+### 日常使用场景
+
+1. **工作记录**：自动记录工作活动，生成每日/每周摘要
+2. **创作辅助**：在写作或编程时，智能重现相关的上下文信息
+3. **任务管理**：从上下文中提取待办事项，主动提醒
+4. **知识管理**：收集和组织数字世界的上下文，便于后续检索
+
+### 最佳实践
+
+1. 合理设置屏幕共享区域，避免收集过多无关信息
+2. 定期清理本地存储，保持数据管理高效
+3. 根据需求选择合适的 AI 模型（本地模型 vs 云端模型）
+4. 充分利用主动推送功能，提高工作效率
+
+## 扩展与定制
+
+### 模型定制
+
+支持任何兼容 OpenAI API 格式的模型，可以轻松替换为其他模型服务。
+
+### 数据导出
+
+本地存储的数据可以导出，便于备份和迁移。
+
+### 功能扩展
+
+基于上下文工程架构，可以扩展支持更多的数据源和模态。
+
+## 相关资源
+
+- [GitHub 仓库](https://github.com/volcengine/MineContext)
+- [Doubao API 管理界面](https://console.volcengine.com/ark)
+- [LMStudio](https://lmstudio.ai/)
