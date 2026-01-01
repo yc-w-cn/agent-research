@@ -1,6 +1,7 @@
 {
   "name": "@yc-w-cn/agent-research",
   "version": "0.0.1",
+  "description": "智能代理领域的学术论文与代码资源库",
   "private": true,
   "scripts": {
     "dev": "next dev",
