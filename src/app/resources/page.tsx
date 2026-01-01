@@ -1,6 +1,23 @@
 import Link from 'next/link';
 
-export default function ResourcesPage() {
+import SearchBar from '@/components/SearchBar';
+import { getContentByType } from '@/lib/content-loader';
+
+export default async function ResourcesPage() {
+  const resources = await getContentByType('resource');
+
+  const groupedResources = resources.reduce<Record<string, typeof resources>>(
+    (acc, resource) => {
+      const category = resource.category || '其他';
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(resource);
+      return acc;
+    },
+    {},
+  );
+
   return (
     <div className="min-h-screen bg-white text-black">
       <main className="mx-auto max-w-5xl px-8 py-32">
@@ -20,113 +37,47 @@ export default function ResourcesPage() {
           <p className="mt-8 text-xl text-zinc-600 max-w-xl">
             汇总 Agent 研究所需的各类资源
           </p>
+          <div className="mt-12 max-w-2xl">
+            <SearchBar items={resources} />
+          </div>
         </header>
 
         <section className="space-y-12">
-          <div className="border-t border-zinc-200 pt-8">
-            <h2 className="text-2xl font-bold tracking-tight mb-4">数据集</h2>
-            <div className="space-y-6">
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  AgentBench
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  评估 LLM 作为 Agent 能力的综合基准测试，涵盖多种任务类型。
-                </p>
-              </article>
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  ToolBench
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  评估 LLM 工具使用能力的基准测试，包含大量真实 API 调用场景。
-                </p>
-              </article>
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  InterCode
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  交互式代码执行基准测试，评估 Agent 在编程任务中的表现。
-                </p>
-              </article>
+          {Object.entries(groupedResources).map(([category, items]) => (
+            <div key={category} className="border-t border-zinc-200 pt-8">
+              <h2 className="text-2xl font-bold tracking-tight mb-4">
+                {category}
+              </h2>
+              <div className="space-y-6">
+                {items.map((resource) => (
+                  <Link
+                    key={resource.slug}
+                    href={`/resources/${resource.slug}`}
+                    className="group block"
+                  >
+                    <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
+                      {resource.title}
+                    </h3>
+                    <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
+                      <span>{resource.date}</span>
+                    </div>
+                    {resource.tags && resource.tags.length > 0 && (
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {resource.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-xs px-2 py-1 bg-zinc-100 text-zinc-600"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-
-          <div className="border-t border-zinc-200 pt-8">
-            <h2 className="text-2xl font-bold tracking-tight mb-4">评测基准</h2>
-            <div className="space-y-6">
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  AgentEval
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  评估 Agent 任务完成能力的框架，支持多种评估指标。
-                </p>
-              </article>
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  ML-Bench
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  机器学习任务基准测试，评估 Agent 在数据分析和建模方面的能力。
-                </p>
-              </article>
-            </div>
-          </div>
-
-          <div className="border-t border-zinc-200 pt-8">
-            <h2 className="text-2xl font-bold tracking-tight mb-4">教程文档</h2>
-            <div className="space-y-6">
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  LangChain 官方文档
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  最全面的 Agent 开发教程，涵盖从基础到高级的所有概念。
-                </p>
-              </article>
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  Andrew Ng 的 AI Agent 课程
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  DeepLearning.AI 推出的 AI Agent 专项课程，系统讲解 Agent
-                  原理和应用。
-                </p>
-              </article>
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  Awesome AI Agents
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  GitHub 上精选的 AI Agent 资源列表，持续更新最新的项目和论文。
-                </p>
-              </article>
-            </div>
-          </div>
-
-          <div className="border-t border-zinc-200 pt-8">
-            <h2 className="text-2xl font-bold tracking-tight mb-4">社区资源</h2>
-            <div className="space-y-6">
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  LangChain Discord 社区
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  活跃的 Agent 开发者社区，可以获取帮助和分享经验。
-                </p>
-              </article>
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  Reddit r/LangChain
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  讨论最新 Agent 技术和项目的论坛。
-                </p>
-              </article>
-            </div>
-          </div>
+          ))}
         </section>
       </main>
     </div>

@@ -1,6 +1,23 @@
 import Link from 'next/link';
 
-export default function PapersPage() {
+import SearchBar from '@/components/SearchBar';
+import { getContentByType } from '@/lib/content-loader';
+
+export default async function PapersPage() {
+  const papers = await getContentByType('paper');
+
+  const groupedPapers = papers.reduce<Record<string, typeof papers>>(
+    (acc, paper) => {
+      const category = paper.category || '其他';
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(paper);
+      return acc;
+    },
+    {},
+  );
+
   return (
     <div className="min-h-screen bg-white text-black">
       <main className="mx-auto max-w-5xl px-8 py-32">
@@ -20,79 +37,69 @@ export default function PapersPage() {
           <p className="mt-8 text-xl text-zinc-600 max-w-xl">
             探索最新的 Agent 领域研究成果
           </p>
+          <div className="mt-12 max-w-2xl">
+            <SearchBar items={papers} />
+          </div>
         </header>
 
         <section className="space-y-12">
-          <div className="border-t border-zinc-200 pt-8">
-            <h2 className="text-2xl font-bold tracking-tight mb-4">核心论文</h2>
-            <div className="space-y-6">
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  ReAct: Synergizing Reasoning and Acting in Language Models
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  提出了 ReAct
-                  范式，将推理和行动结合，使大语言模型能够更好地执行复杂任务。
-                </p>
-              </article>
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  AutoGPT: An Autonomous GPT-4 Experiment
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  展示了自主 Agent 的潜力，能够自动分解目标并执行相关任务。
-                </p>
-              </article>
+          {Object.entries(groupedPapers).map(([category, items]) => (
+            <div key={category} className="border-t border-zinc-200 pt-8">
+              <h2 className="text-2xl font-bold tracking-tight mb-4">
+                {category}
+              </h2>
+              <div className="space-y-6">
+                {items.map((paper) => (
+                  <Link
+                    key={paper.slug}
+                    href={`/papers/${paper.slug}`}
+                    className="group block"
+                  >
+                    <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
+                      {paper.title}
+                    </h3>
+                    <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
+                      <span>{paper.date}</span>
+                      {paper.arxiv && (
+                        <a
+                          href={`https://arxiv.org/abs/${paper.arxiv}`}
+                          className="hover:text-black transition-colors"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
+                          arXiv:{paper.arxiv}
+                        </a>
+                      )}
+                      {paper.github && (
+                        <a
+                          href={`https://github.com/${paper.github}`}
+                          className="hover:text-black transition-colors"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
+                        >
+                          GitHub
+                        </a>
+                      )}
+                    </div>
+                    {paper.tags && paper.tags.length > 0 && (
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {paper.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-xs px-2 py-1 bg-zinc-100 text-zinc-600"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-
-          <div className="border-t border-zinc-200 pt-8">
-            <h2 className="text-2xl font-bold tracking-tight mb-4">
-              多 Agent 系统
-            </h2>
-            <div className="space-y-6">
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  MetaGPT: Meta Programming for A Multi-Agent Collaborative
-                  Framework
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  将人类工作流程引入多 Agent
-                  协作，通过标准化操作程序提高协作效率。
-                </p>
-              </article>
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  AgentVerse: Facilitating Multi-Agent Collaboration
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  提供了一个灵活的多 Agent 协作框架，支持各种协作模式。
-                </p>
-              </article>
-            </div>
-          </div>
-
-          <div className="border-t border-zinc-200 pt-8">
-            <h2 className="text-2xl font-bold tracking-tight mb-4">工具使用</h2>
-            <div className="space-y-6">
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  Toolformer: Language Models Can Teach Themselves to Use Tools
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  让语言模型自主学习如何使用外部工具，增强其能力。
-                </p>
-              </article>
-              <article className="group">
-                <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                  Chameleon: Plug-and-Play Compositional Reasoning
-                </h3>
-                <p className="mt-2 text-base text-zinc-600">
-                  通过组合不同的工具和模块，实现灵活的推理和问题解决。
-                </p>
-              </article>
-            </div>
-          </div>
+          ))}
         </section>
       </main>
     </div>
