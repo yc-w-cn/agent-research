@@ -8,11 +8,17 @@ interface CardProps {
   data: ContentItem;
   href: string;
   children: React.ReactNode;
+  topRight?: React.ReactNode;
 }
 
-export default function Card({ data, href, children }: CardProps) {
+export default function Card({ data, href, children, topRight }: CardProps) {
   return (
     <div className="bg-zinc-50 p-4 border border-transparent relative">
+      {topRight && (
+        <div className="absolute top-4 right-4 flex items-center gap-4 text-sm text-zinc-600">
+          {topRight}
+        </div>
+      )}
       <h3 className="text-lg font-semibold">{data.title}</h3>
       {children}
       <div className="flex justify-end items-center absolute bottom-4 right-4">
