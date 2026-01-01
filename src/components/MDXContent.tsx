@@ -19,7 +19,7 @@ const mdxComponents: MDXComponents = {
     const text = typeof props.children === 'string' ? props.children : '';
     const id = generateHeadingId(text);
     return (
-      <h1 id={id} className="text-4xl font-bold mt-12 mb-6 text-black">
+      <h1 id={id} className="text-3xl font-bold mt-8 mb-4 text-black">
         {props.children}
       </h1>
     );
@@ -28,7 +28,7 @@ const mdxComponents: MDXComponents = {
     const text = typeof props.children === 'string' ? props.children : '';
     const id = generateHeadingId(text);
     return (
-      <h2 id={id} className="text-3xl font-bold mt-10 mb-5 text-black">
+      <h2 id={id} className="text-2xl font-bold mt-6 mb-3 text-black">
         {props.children}
       </h2>
     );
@@ -37,7 +37,7 @@ const mdxComponents: MDXComponents = {
     const text = typeof props.children === 'string' ? props.children : '';
     const id = generateHeadingId(text);
     return (
-      <h3 id={id} className="text-2xl font-bold mt-8 mb-4 text-black">
+      <h3 id={id} className="text-xl font-bold mt-5 mb-2 text-black">
         {props.children}
       </h3>
     );
@@ -46,13 +46,15 @@ const mdxComponents: MDXComponents = {
     const text = typeof props.children === 'string' ? props.children : '';
     const id = generateHeadingId(text);
     return (
-      <h4 id={id} className="text-xl font-bold mt-6 mb-3 text-black">
+      <h4 id={id} className="text-lg font-bold mt-4 mb-2 text-black">
         {props.children}
       </h4>
     );
   },
   p: (props: { children?: React.ReactNode }) => (
-    <p className="text-lg leading-relaxed mb-6 text-black">{props.children}</p>
+    <p className="text-base leading-relaxed mb-4 text-black">
+      {props.children}
+    </p>
   ),
   a: (props: { href?: string; children?: React.ReactNode }) => (
     <a
@@ -65,30 +67,30 @@ const mdxComponents: MDXComponents = {
     </a>
   ),
   ul: (props: { children?: React.ReactNode }) => (
-    <ul className="list-disc list-inside mb-6 text-black space-y-2">
+    <ul className="list-disc list-inside mb-4 text-black space-y-1">
       {props.children}
     </ul>
   ),
   ol: (props: { children?: React.ReactNode }) => (
-    <ol className="list-decimal list-inside mb-6 text-black space-y-2">
+    <ol className="list-decimal list-inside mb-4 text-black space-y-1">
       {props.children}
     </ol>
   ),
   li: (props: { children?: React.ReactNode }) => (
-    <li className="text-lg leading-relaxed">{props.children}</li>
+    <li className="text-base leading-relaxed">{props.children}</li>
   ),
   blockquote: (props: { children?: React.ReactNode }) => (
-    <blockquote className="border-l-4 border-black pl-6 my-6 italic text-zinc-700">
+    <blockquote className="border-l-4 border-black pl-4 my-4 italic text-zinc-700">
       {props.children}
     </blockquote>
   ),
   code: (props: { children?: React.ReactNode }) => (
-    <code className="bg-zinc-100 px-2 py-1 rounded text-sm font-mono text-black">
+    <code className="bg-zinc-100 px-1.5 py-0.5 rounded text-xs font-mono text-black">
       {props.children}
     </code>
   ),
   pre: (props: { children?: React.ReactNode }) => (
-    <pre className="bg-zinc-100 p-6 rounded-lg overflow-x-auto mb-6">
+    <pre className="bg-zinc-100 p-4 rounded-lg overflow-x-auto mb-4">
       {props.children}
     </pre>
   ),
