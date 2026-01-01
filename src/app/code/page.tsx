@@ -7,8 +7,7 @@ export default async function CodePage() {
 
   return (
     <ContentPage
-      title="开源"
-      subtitle="代码"
+      title="开源代码"
       description="收集整理高质量的 Agent 相关开源项目"
       items={code}
       renderItem={(data) => <CodeItem data={data} />}

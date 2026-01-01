@@ -7,8 +7,7 @@ export default async function PapersPage() {
 
   return (
     <ContentPage
-      title="学术"
-      subtitle="论文"
+      title="学术论文"
       description="探索最新的 Agent 领域研究成果"
       items={papers}
       renderItem={(data) => <PaperItem data={data} />}

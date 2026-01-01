@@ -5,7 +5,6 @@ import SearchBar from './SearchBar';
 
 interface ContentPageProps {
   title: string;
-  subtitle: string;
   description: string;
   items: ContentItem[];
   renderItem: (item: ContentItem) => React.ReactNode;
@@ -13,7 +12,6 @@ interface ContentPageProps {
 
 export default function ContentPage({
   title,
-  subtitle,
   description,
   items,
   renderItem,
@@ -26,8 +24,6 @@ export default function ContentPage({
         <header className="mb-16">
           <h1 className="text-5xl font-bold tracking-tight leading-none">
             {title}
-            <br />
-            <span className="text-zinc-400">{subtitle}</span>
           </h1>
           <p className="mt-6 text-lg text-zinc-600 max-w-xl">{description}</p>
           <div className="mt-8 max-w-2xl">

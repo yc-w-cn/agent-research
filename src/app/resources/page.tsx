@@ -7,8 +7,7 @@ export default async function ResourcesPage() {
 
   return (
     <ContentPage
-      title="相关"
-      subtitle="资源"
+      title="相关资源"
       description="汇总 Agent 研究所需的各类资源"
       items={resources}
       renderItem={(data) => <ResourceItem data={data} />}
