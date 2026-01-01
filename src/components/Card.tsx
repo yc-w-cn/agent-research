@@ -11,9 +11,7 @@ interface CardProps {
 export default function Card({ data, href, children }: CardProps) {
   return (
     <div className="bg-zinc-50 p-4 border border-transparent">
-      <Link href={href} className="block">
-        <h3 className="text-lg font-semibold">{data.title}</h3>
-      </Link>
+      <h3 className="text-lg font-semibold">{data.title}</h3>
       {children}
     </div>
   );

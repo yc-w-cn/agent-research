@@ -10,7 +10,7 @@ export default function Tags({ tags }: TagsProps) {
       {tags.map((tag) => (
         <span
           key={tag}
-          className="text-xs px-3 py-1.5 border border-zinc-300 text-zinc-700 hover:border-gray-400 transition-colors"
+          className="text-xs px-3 py-1.5 border border-zinc-300 text-zinc-700 hover:border-gray-400 transition-colors cursor-pointer"
           onMouseEnter={(e) => {
             e.stopPropagation();
           }}
