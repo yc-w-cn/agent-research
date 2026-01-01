@@ -29,7 +29,7 @@ export async function generateMetadata({
     content.content.slice(0, 160);
 
   return {
-    title: content.title,
+    title: content.title + '| Agent Research',
     description:
       typeof description === 'string'
         ? description
