@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 
+import { formatArxivSubjects } from '@/lib/arxiv-subjects';
 import { ContentItem } from '@/lib/content';
 
 import Card from './Card';
@@ -26,7 +27,7 @@ export default function PaperItem({ data }: PaperItemProps) {
       </div>
       {data.arxiv?.subjects && data.arxiv.subjects.length > 0 && (
         <div className="mt-2 text-xs text-zinc-600">
-          {data.arxiv.subjects.join('; ')}
+          {formatArxivSubjects(data.arxiv.subjects)}
         </div>
       )}
       {data.arxiv?.description && (

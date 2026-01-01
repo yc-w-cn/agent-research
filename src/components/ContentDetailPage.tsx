@@ -34,7 +34,7 @@ export default function ContentDetailPage({ content }: ContentDetailPageProps) {
               )}
               {content.github && (
                 <a
-                  href={`https://github.com/${content.github.repo}`}
+                  href={`https://github.com/${content.github.name}`}
                   className="hover:text-black transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
