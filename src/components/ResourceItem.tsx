@@ -1,6 +1,7 @@
 import { ContentItem } from '@/lib/content';
 import {
   getRelatedResourceInfo,
+  getRelatedResourceParentSlug,
   getRelatedResourceUrl,
 } from '@/lib/content/client';
 
@@ -12,12 +13,13 @@ interface ResourceItemProps {
 
 export default function ResourceItem({ data }: ResourceItemProps) {
   const externalUrl = getRelatedResourceUrl(data.slug);
+  const parentSlug = getRelatedResourceParentSlug(data.slug);
   const relatedInfo = externalUrl ? getRelatedResourceInfo(data.slug) : null;
 
   return (
     <Card
       data={data}
-      href={`/content/${data.slug}`}
+      href={`/content/${parentSlug}`}
       externalUrl={externalUrl || undefined}
     >
       {relatedInfo?.related.description && (

@@ -19,3 +19,8 @@ export function getRelatedResourceUrl(slug: string): string | null {
   const relatedInfo = relatedResourcesMap.get(slug);
   return relatedInfo?.related.url || null;
 }
+
+export function getRelatedResourceParentSlug(slug: string): string | null {
+  const relatedInfo = relatedResourcesMap.get(slug);
+  return relatedInfo?.parentSlug || null;
+}
