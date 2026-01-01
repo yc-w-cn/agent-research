@@ -19,7 +19,7 @@ export default function ResourceItem({ data }: ResourceItemProps) {
   return (
     <Card
       data={data}
-      href={`/resources/${data.slug}`}
+      href={`/content/${data.slug}`}
       externalUrl={externalUrl || undefined}
     >
       {relatedInfo?.related.description && (

@@ -41,7 +41,7 @@ export default function CodeItem({ data }: CodeItemProps) {
   );
 
   return (
-    <Card data={data} href={`/code/${data.slug}`} topRight={topRightContent}>
+    <Card data={data} href={`/content/${data.slug}`} topRight={topRightContent}>
       {data.github?.description && (
         <p className="mt-2 text-sm text-zinc-600 whitespace-pre-wrap">
           {data.github.description}

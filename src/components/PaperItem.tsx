@@ -47,7 +47,7 @@ export default function PaperItem({ data }: PaperItemProps) {
   const description = getDescription();
 
   return (
-    <Card data={data} href={`/papers/${data.slug}`}>
+    <Card data={data} href={`/content/${data.slug}`}>
       <div className="absolute top-4 right-4">
         <LanguageSwitcher
           hasZhContent={hasZhContent}

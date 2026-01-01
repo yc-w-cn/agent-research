@@ -1,16 +1,13 @@
 import { notFound } from 'next/navigation';
 
 import ContentDetailPage from '@/components/ContentDetailPage';
-import { getContentBySlug, getContentByType } from '@/lib/content';
+import { getAllContent, getContentBySlug } from '@/lib/content';
 
 export async function generateStaticParams() {
-  const papers = await getContentByType('paper');
-  return papers.map((paper) => ({
-    slug: paper.slug,
-  }));
+  return getAllContent();
 }
 
-export default async function PaperDetailPage({
+export default async function ContentPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
