@@ -10,7 +10,7 @@ const navItems = [
 export default function Navigation() {
   return (
     <nav className="border-b border-zinc-200">
-      <div className="mx-auto max-w-5xl px-8 py-4">
+      <div className="mx-auto max-w-6xl px-8 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="text-lg font-bold text-black">
             Agent Research
