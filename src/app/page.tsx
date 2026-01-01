@@ -6,7 +6,7 @@ export default async function Home() {
   const [papers, code, resources] = await Promise.all([
     getContentByType('paper'),
     getContentByType('code'),
-    getContentByType('resource'),
+    getContentByType('resource', false),
   ]);
 
   return (
