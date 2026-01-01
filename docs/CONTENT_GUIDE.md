@@ -8,16 +8,8 @@
 
 ```
 src/
-├── content/              # 内容文件目录
-│   ├── papers/          # 论文内容
-│   │   ├── index.mdx    # 论文索引文件
-│   │   └── *.mdx        # 各个论文的详细内容
-│   ├── code/            # 代码仓库内容
-│   │   ├── index.mdx    # 代码索引文件
-│   │   └── *.mdx        # 各个代码仓库的详细内容
-│   └── resources/       # 资源内容
-│       ├── index.mdx    # 资源索引文件
-│       └── *.mdx        # 各个资源的详细内容
+└── content/              # 内容文件目录
+    └── *.mdx            # 所有内容文件直接放在此处
 docs/
 └── SWISS_DESIGN_STYLE.md
 ```
@@ -26,39 +18,7 @@ docs/
 
 - 所有文件名使用**小写字母和连字符**（kebab-case）
 - URL 路径与文件名保持一致
-- 示例：`agentic-rag-survey.mdx` → `/papers/agentic-rag-survey`
-
-## 索引文件设计
-
-### 索引文件结构
-
-索引文件用于集中管理和分类内容，避免单个文件过长。按类型和主题进行拆分：
-
-```mdx
----
-title: 论文索引
----
-
-## 核心论文
-
-### ReAct 范式
-- [ReAct: Synergizing Reasoning and Acting](/papers/react)
-
-### 工具使用
-- [Toolformer: Language Models Can Teach Themselves to Use Tools](/papers/toolformer)
-
-## 多 Agent 系统
-
-### 协作框架
-- [MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework](/papers/metagpt)
-- [AgentVerse: Facilitating Multi-Agent Collaboration](/papers/agentverse)
-```
-
-### 索引文件拆分原则
-
-1. **按类型拆分**：论文、代码、资源分别有独立的索引
-2. **按主题拆分**：当单个索引超过 50 个条目时，按主题拆分为多个索引文件
-3. **按字母拆分**：当同一主题下条目过多时，按首字母拆分
+- 示例：`agentic-rag-survey.mdx` → `/agentic-rag-survey`
 
 ## 内容文件规范
 
@@ -117,7 +77,7 @@ Agentic-RAG explores advanced Retrieval-Augmented Generation systems enhanced wi
 |------|------|------|------|
 | title | string | 是 | 标题 |
 | type | string | 是 | 类型：paper/code/resource |
-| category | string | 是 | 分类，对应索引中的主题 |
+| category | string | 是 | 分类标签 |
 | date | string | 是 | 发布日期，格式 YYYY-MM-DD |
 | tags | array | 否 | 标签列表 |
 | arxiv | string | 否 | arXiv 论文编号 |
@@ -136,35 +96,24 @@ Agentic-RAG explores advanced Retrieval-Augmented Generation systems enhanced wi
 
 ### 步骤 1：创建内容文件
 
-在对应的目录下创建 MDX 文件：
+在 content 目录下创建 MDX 文件：
 
 ```bash
 # 添加论文
-src/content/papers/agentic-rag-survey.mdx
+src/content/agentic-rag-survey.mdx
 
 # 添加代码仓库
-src/content/code/langchain.mdx
+src/content/langchain.mdx
 
 # 添加资源
-src/content/resources/agentbench.mdx
+src/content/agentbench.mdx
 ```
 
-### 步骤 2：更新索引文件
-
-在对应的索引文件中添加链接：
-
-```mdx
-## Agentic RAG
-
-- [Agentic RAG - A Survey](/papers/agentic-rag-survey)
-```
-
-### 步骤 3：验证链接
+### 步骤 2：验证链接
 
 确保：
 - 文件名使用小写连字符
 - URL 路径正确
-- 索引链接可点击
 
 ## 内容类型说明
 
@@ -191,16 +140,14 @@ src/content/resources/agentbench.mdx
 ## 最佳实践
 
 1. **保持简洁**：每个内容文件控制在 100 行以内
-2. **合理分类**：确保内容被正确分类到索引中
-3. **及时更新**：定期检查链接有效性
-4. **统一格式**：遵循 Swiss 设计风格，保持视觉一致性
-5. **标签规范**：使用小写连字符作为标签格式
+2. **及时更新**：定期检查链接有效性
+3. **统一格式**：遵循 Swiss 设计风格，保持视觉一致性
+4. **标签规范**：使用小写连字符作为标签格式
 
 ## 范例
 
 完整的范例请参考：
-- [Agentic RAG Survey](/papers/agentic-rag-survey)
-- [Agentic RAG Survey 索引条目](/papers/index.mdx)
+- [Agentic RAG Survey](/agentic-rag-survey)
 
 ## 注意事项
 
