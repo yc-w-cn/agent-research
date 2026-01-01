@@ -1,7 +1,6 @@
-import Link from 'next/link';
-
 import { ContentItem } from '@/lib/content';
 
+import Navigation from './Navigation';
 import SearchBar from './SearchBar';
 
 interface ContentPageProps {
@@ -21,22 +20,17 @@ export default function ContentPage({
 }: ContentPageProps) {
   return (
     <div className="min-h-screen bg-white text-black">
-      <main className="mx-auto max-w-5xl px-8 py-32">
-        <Link
-          href="/"
-          className="inline-block mb-12 text-zinc-600 hover:text-black transition-colors"
-        >
-          ← 返回首页
-        </Link>
+      <Navigation />
 
-        <header className="mb-24">
-          <h1 className="text-8xl font-bold tracking-tight leading-none">
+      <main className="mx-auto max-w-5xl px-8 py-16">
+        <header className="mb-16">
+          <h1 className="text-5xl font-bold tracking-tight leading-none">
             {title}
             <br />
             <span className="text-zinc-400">{subtitle}</span>
           </h1>
-          <p className="mt-8 text-xl text-zinc-600 max-w-xl">{description}</p>
-          <div className="mt-12 max-w-2xl">
+          <p className="mt-6 text-lg text-zinc-600 max-w-xl">{description}</p>
+          <div className="mt-8 max-w-2xl">
             <SearchBar items={items} />
           </div>
         </header>
