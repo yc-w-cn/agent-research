@@ -1,6 +1,6 @@
 import ContentPage from '@/components/ContentPage';
 import PaperItem from '@/components/PaperItem';
-import { getContentByType } from '@/lib/content-loader';
+import { getContentByType } from '@/lib/content';
 
 export default async function PapersPage() {
   const papers = await getContentByType('paper');

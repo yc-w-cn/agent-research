@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { getContentByType } from '@/lib/content-loader';
+import { getContentByType } from '@/lib/content';
 
 export default async function Home() {
   const [papers, code, resources] = await Promise.all([

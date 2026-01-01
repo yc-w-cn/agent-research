@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
 import ContentDetailPage from '@/components/ContentDetailPage';
-import { getContentBySlug, getContentByType } from '@/lib/content-loader';
+import { getContentBySlug, getContentByType } from '@/lib/content';
 
 export async function generateStaticParams() {
   const codes = await getContentByType('code');

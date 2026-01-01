@@ -1,6 +1,6 @@
 import ContentPage from '@/components/ContentPage';
 import ResourceItem from '@/components/ResourceItem';
-import { getContentByType } from '@/lib/content-loader';
+import { getContentByType } from '@/lib/content';
 
 export default async function ResourcesPage() {
   const resources = await getContentByType('resource');

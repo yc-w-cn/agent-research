@@ -1,7 +1,10 @@
 import dayjs from 'dayjs';
 
-import { ContentItem } from '@/lib/content';
-import { getRelatedResourceUrl } from '@/lib/content-loader';
+import {
+  ContentItem,
+  getRelatedResourceInfo,
+  getRelatedResourceUrl,
+} from '@/lib/content';
 
 import Card from './Card';
 
@@ -26,9 +29,4 @@ export default function ResourceItem({ data }: ResourceItemProps) {
       )}
     </Card>
   );
-}
-
-function getRelatedResourceInfo(slug: string) {
-  const { relatedResourcesMap } = require('@/lib/content-loader');
-  return relatedResourcesMap.get(slug);
 }

@@ -1,6 +1,6 @@
 import CodeItem from '@/components/CodeItem';
 import ContentPage from '@/components/ContentPage';
-import { getContentByType } from '@/lib/content-loader';
+import { getContentByType } from '@/lib/content';
 
 export default async function CodePage() {
   const code = await getContentByType('code');

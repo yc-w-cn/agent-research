@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 
-import { ContentData } from '@/lib/content';
-import { getRelatedResourceUrl } from '@/lib/content-loader';
+import { ContentData, getRelatedResourceUrl } from '@/lib/content';
 
 import MDXContent from './MDXContent';
 import Navigation from './Navigation';

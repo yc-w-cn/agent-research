@@ -18,6 +18,12 @@ export interface GithubInfo {
   tags?: string[];
 }
 
+export interface RelatedResource {
+  title: string;
+  url: string;
+  description?: string;
+}
+
 export interface ContentItem {
   slug: string;
   title: string;
@@ -28,12 +34,15 @@ export interface ContentItem {
   related?: RelatedResource[];
 }
 
-export interface RelatedResource {
-  title: string;
-  url: string;
-  description?: string;
-}
-
 export interface ContentData extends ContentItem {
   content: string;
+}
+
+export interface MdxFrontmatter {
+  title?: string;
+  categories?: string[];
+  date?: string | Date;
+  arxiv?: ArxivInfo | string;
+  github?: GithubInfo | string;
+  related?: RelatedResource[];
 }
