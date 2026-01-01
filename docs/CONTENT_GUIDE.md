@@ -100,13 +100,13 @@ Agentic-RAG explores advanced Retrieval-Augmented Generation systems enhanced wi
 在 content 目录下创建 MDX 文件：
 
 ```bash
-# 添加论文
+# 添加论文（有 arxiv 字段）
 src/content/agentic-rag-survey.mdx
 
-# 添加代码仓库
+# 添加代码（有 github 字段）
 src/content/langchain.mdx
 
-# 添加资源
+# 添加资源（有 related 字段）
 src/content/agentbench.mdx
 ```
 
