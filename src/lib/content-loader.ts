@@ -31,16 +31,16 @@ export async function getContentByType(
       date: data.date ? String(data.date) : '',
       arxiv: data.arxiv
         ? {
-            id: data.arxiv,
-            subjects: data.arxivSubjects || [],
-            description: data.arxivDescription,
+            id: data.arxiv.id || String(data.arxiv),
+            subjects: data.arxiv.subjects || [],
+            description: data.arxiv.description,
           }
         : undefined,
       github: data.github
         ? {
-            repo: data.github,
-            stars: data.stars,
-            tags: data.tags || [],
+            repo: data.github.repo || String(data.github),
+            stars: data.github.stars,
+            tags: data.github.tags || [],
           }
         : undefined,
       related: data.related || [],
@@ -80,16 +80,16 @@ export async function getContentBySlug(
     date: data.date ? String(data.date) : '',
     arxiv: data.arxiv
       ? {
-          id: data.arxiv,
-          subjects: data.arxivSubjects || [],
-          description: data.arxivDescription,
+          id: data.arxiv.id || String(data.arxiv),
+          subjects: data.arxiv.subjects || [],
+          description: data.arxiv.description,
         }
       : undefined,
     github: data.github
       ? {
-          repo: data.github,
-          stars: data.stars,
-          tags: data.tags || [],
+          repo: data.github.repo || String(data.github),
+          stars: data.github.stars,
+          tags: data.github.tags || [],
         }
       : undefined,
     related: data.related || [],
