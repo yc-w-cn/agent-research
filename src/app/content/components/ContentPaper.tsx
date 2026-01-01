@@ -50,7 +50,7 @@ export default function ContentPaper({ content }: ContentPaperProps) {
 
   return (
     <div className="col-span-12 mb-8">
-      <div className="p-6 bg-zinc-50 border-l-2 border-black">
+      <div className="p-6 bg-zinc-50">
         <div className="flex justify-between items-center mb-4">
           <div className="text-lg font-bold text-zinc-900 tracking-wider">
             {content.arxiv?.title}
