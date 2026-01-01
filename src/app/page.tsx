@@ -38,21 +38,6 @@ export default function Home() {
             </p>
           </div>
         </section>
-
-        <footer className="mt-32 pt-16 border-t border-zinc-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-zinc-400">2026</p>
-              <p className="text-lg font-bold">Agent Research</p>
-            </div>
-            <div className="flex gap-12 text-sm text-zinc-600">
-              <span>Research</span>
-              <span>Code</span>
-              <span>Resources</span>
-              <span>About</span>
-            </div>
-          </div>
-        </footer>
       </main>
     </div>
   );
