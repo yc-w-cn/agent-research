@@ -20,7 +20,7 @@ export default function CodeItem({ data }: CodeItemProps) {
         <span>{dayjs(data.date).format('YYYY-MM-DD')}</span>
         {data.github && (
           <a
-            href={`https://github.com/${data.github}`}
+            href={`https://github.com/${data.github.repo}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-black transition-colors"
@@ -28,13 +28,15 @@ export default function CodeItem({ data }: CodeItemProps) {
             GitHub
           </a>
         )}
-        {data.stars && (
-          <span className="flex items-center gap-1">⭐ {data.stars}</span>
+        {data.github?.stars && (
+          <span className="flex items-center gap-1">
+            ⭐ {data.github.stars}
+          </span>
         )}
       </div>
-      {data.tags && data.tags.length > 0 && (
+      {data.github?.tags && data.github.tags.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-2">
-          {data.tags.map((tag) => (
+          {data.github.tags.map((tag) => (
             <span
               key={tag}
               className="text-xs px-2 py-1 bg-zinc-100 text-zinc-600"

@@ -1,6 +1,5 @@
 import Link from 'next/link';
 
-import SearchBar from '@/components/SearchBar';
 import { getContentByType } from '@/lib/content-loader';
 
 export default async function Home() {
@@ -9,8 +8,6 @@ export default async function Home() {
     getContentByType('code'),
     getContentByType('resource'),
   ]);
-
-  const allContent = [...papers, ...code, ...resources];
 
   return (
     <div className="bg-white text-black">
@@ -24,9 +21,6 @@ export default async function Home() {
           <p className="mt-8 text-xl text-zinc-600 max-w-xl">
             探索 Agent 领域学术论文与代码资源库
           </p>
-          <div className="mt-12 max-w-2xl">
-            <SearchBar items={allContent} />
-          </div>
         </header>
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-12">

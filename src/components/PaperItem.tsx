@@ -20,35 +20,23 @@ export default function PaperItem({ data }: PaperItemProps) {
         <span>{dayjs(data.date).format('YYYY-MM-DD')}</span>
         {data.arxiv && (
           <a
-            href={`https://arxiv.org/abs/${data.arxiv}`}
+            href={`https://arxiv.org/abs/${data.arxiv.id}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-black transition-colors"
           >
-            arXiv:{data.arxiv}
-          </a>
-        )}
-        {data.github && (
-          <a
-            href={`https://github.com/${data.github}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-black transition-colors"
-          >
-            GitHub
+            arXiv:{data.arxiv.id}
           </a>
         )}
       </div>
-      {data.tags && data.tags.length > 0 && (
-        <div className="mt-2 flex flex-wrap gap-2">
-          {data.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs px-2 py-1 bg-zinc-100 text-zinc-600"
-            >
-              {tag}
-            </span>
-          ))}
+      {data.arxiv?.subjects && data.arxiv.subjects.length > 0 && (
+        <div className="mt-2 text-xs text-zinc-600">
+          {data.arxiv.subjects.join('; ')}
+        </div>
+      )}
+      {data.arxiv?.description && (
+        <div className="mt-2 text-sm text-zinc-700">
+          {data.arxiv.description}
         </div>
       )}
     </div>

@@ -33,8 +33,9 @@ export default function SearchBar({ items }: SearchBarProps) {
           cat.toLowerCase().includes(lowerQuery),
         ) ?? false;
       const tagsMatch =
-        item.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery)) ??
-        false;
+        item.github?.tags?.some((tag) =>
+          tag.toLowerCase().includes(lowerQuery),
+        ) ?? false;
 
       return titleMatch || categoriesMatch || tagsMatch;
     });

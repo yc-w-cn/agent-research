@@ -29,10 +29,20 @@ export async function getContentByType(
       title: data.title || '',
       categories: data.categories || [],
       date: data.date ? String(data.date) : '',
-      tags: data.tags || [],
-      arxiv: data.arxiv,
-      github: data.github,
-      stars: data.stars,
+      arxiv: data.arxiv
+        ? {
+            id: data.arxiv,
+            subjects: data.arxivSubjects || [],
+            description: data.arxivDescription,
+          }
+        : undefined,
+      github: data.github
+        ? {
+            repo: data.github,
+            stars: data.stars,
+            tags: data.tags || [],
+          }
+        : undefined,
       related: data.related || [],
     };
 
@@ -68,10 +78,20 @@ export async function getContentBySlug(
     title: data.title || '',
     categories: data.categories || [],
     date: data.date ? String(data.date) : '',
-    tags: data.tags || [],
-    arxiv: data.arxiv,
-    github: data.github,
-    stars: data.stars,
+    arxiv: data.arxiv
+      ? {
+          id: data.arxiv,
+          subjects: data.arxivSubjects || [],
+          description: data.arxivDescription,
+        }
+      : undefined,
+    github: data.github
+      ? {
+          repo: data.github,
+          stars: data.stars,
+          tags: data.tags || [],
+        }
+      : undefined,
     related: data.related || [],
     content,
   };
@@ -101,7 +121,7 @@ export async function searchContent(query: string): Promise<ContentItem[]> {
     return (
       item.title.toLowerCase().includes(lowerQuery) ||
       item.categories.some((cat) => cat.toLowerCase().includes(lowerQuery)) ||
-      item.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery))
+      item.github?.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery))
     );
   });
 }

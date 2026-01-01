@@ -33,18 +33,26 @@ categories:
   - agentic-rag
   - retrieval-augmented-generation
 date: 2025-01-27
-arxiv: 2501.09136
-github: asinghcsu/AgenticRAG-Survey
-stars: 1400
-tags:
-  - reflection
-  - tools
-  - multiagent
-  - rag
-  - llm-agent
+arxiv:
+  id: 2501.09136
+  subjects:
+    - cs.AI
+    - cs.CL
+    - cs.IR
+  description: Agentic-RAG explores advanced Retrieval-Augmented Generation systems enhanced with AI LLM agents.
+github:
+  repo: asinghcsu/AgenticRAG-Survey
+  stars: 1400
+  tags:
+    - reflection
+    - tools
+    - multiagent
+    - rag
+    - llm-agent
 related:
   - title: 论文笔记 - Agentic Retrieval-Augmented Generation
     url: https://masutangu.com/2025/02/27/paper-note-agentic-rag/
+    description: 深入解读 Agentic RAG 的核心概念和方法
 ---
 
 ## 概述
@@ -71,11 +79,18 @@ Agentic-RAG explores advanced Retrieval-Augmented Generation systems enhanced wi
 | title | string | 是 | 标题 |
 | categories | array | 是 | 分类标签数组，支持多个分类 |
 | date | string | 是 | 发布日期，格式 YYYY-MM-DD |
-| arxiv | string | 否 | arXiv 论文编号（有此字段会自动显示在 papers 页面） |
-| github | string | 否 | GitHub 仓库路径（有此字段会自动显示在 code 页面） |
-| stars | number | 否 | GitHub 星标数 |
-| tags | array | 否 | GitHub 仓库标签 |
+| arxiv | object | 否 | arXiv 论文信息（有此字段会自动显示在 papers 页面） |
+| arxiv.id | string | 否（arxiv存在时必填） | arXiv 论文编号 |
+| arxiv.subjects | array | 否 | arXiv 论文主题分类 |
+| arxiv.description | string | 否 | arXiv 论文描述 |
+| github | object | 否 | GitHub 仓库信息（有此字段会自动显示在 code 页面） |
+| github.repo | string | 否（github存在时必填） | GitHub 仓库路径 |
+| github.stars | number | 否 | GitHub 星标数 |
+| github.tags | array | 否 | GitHub 仓库标签 |
 | related | array | 否 | 相关资源列表（有此字段会自动显示在 resources 页面） |
+| related[].title | string | 否 | 相关资源标题 |
+| related[].url | string | 否 | 相关资源链接 |
+| related[].description | string | 否 | 相关资源描述 |
 
 ### 自动分类规则
 
@@ -120,21 +135,29 @@ src/content/agentbench.mdx
 
 ### 论文（Papers）
 
-- 包含 `arxiv` 字段
+- 包含 `arxiv` 对象字段
+- `arxiv.id`：arXiv 论文编号
+- `arxiv.subjects`：论文主题分类（可选）
+- `arxiv.description`：论文描述（可选）
 - 可选关联 `github` 仓库
 - 包含论文摘要、核心贡献、方法说明
 - 可添加 `related` 字段关联笔记和解读
 
 ### 代码（Code）
 
-- 包含 `github` 字段
-- 记录星标数 `stars`
+- 包含 `github` 对象字段
+- `github.repo`：GitHub 仓库路径
+- `github.stars`：星标数（可选）
+- `github.tags`：仓库标签（可选）
 - 包含项目简介、主要特性、使用场景
 - 可添加示例代码
 
 ### 资源（Resources）
 
 - 包含 `related` 字段
+- `related[].title`：资源标题
+- `related[].url`：资源链接
+- `related[].description`：资源描述（可选）
 - 说明资源类型（数据集、评测基准、教程等）
 - 提供资源描述和使用说明
 

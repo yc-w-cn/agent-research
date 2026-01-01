@@ -36,17 +36,17 @@ export default function ContentDetailPage({
               <span>{dayjs(content.date).format('YYYY-MM-DD')}</span>
               {content.arxiv && (
                 <a
-                  href={`https://arxiv.org/abs/${content.arxiv}`}
+                  href={`https://arxiv.org/abs/${content.arxiv.id}`}
                   className="hover:text-black transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  arXiv:{content.arxiv}
+                  arXiv:{content.arxiv.id}
                 </a>
               )}
               {content.github && (
                 <a
-                  href={`https://github.com/${content.github}`}
+                  href={`https://github.com/${content.github.repo}`}
                   className="hover:text-black transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -54,15 +54,15 @@ export default function ContentDetailPage({
                   GitHub
                 </a>
               )}
-              {content.stars && (
+              {content.github?.stars && (
                 <span className="flex items-center gap-1">
-                  ⭐ {content.stars}
+                  ⭐ {content.github.stars}
                 </span>
               )}
             </div>
-            {content.tags && content.tags.length > 0 && (
+            {content.github?.tags && content.github.tags.length > 0 && (
               <div className="mt-4 flex flex-wrap gap-2">
-                {content.tags.map((tag) => (
+                {content.github.tags.map((tag) => (
                   <span
                     key={tag}
                     className="text-xs px-3 py-1 bg-zinc-100 text-zinc-600"
