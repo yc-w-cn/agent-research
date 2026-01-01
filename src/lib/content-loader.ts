@@ -7,28 +7,20 @@ import type { ContentData, ContentItem, ContentType } from './content';
 
 const CONTENT_DIR = path.join(process.cwd(), 'src', 'content');
 
-const TYPE_TO_DIR: Record<ContentType, string> = {
-  paper: 'papers',
-  code: 'code',
-  resource: 'resources',
-};
-
 export async function getContentByType(
   type: ContentType,
 ): Promise<ContentItem[]> {
-  const typeDir = path.join(CONTENT_DIR, TYPE_TO_DIR[type]);
-
-  if (!fs.existsSync(typeDir)) {
+  if (!fs.existsSync(CONTENT_DIR)) {
     return [];
   }
 
-  const files = fs.readdirSync(typeDir);
+  const files = fs.readdirSync(CONTENT_DIR);
   const items: ContentItem[] = [];
 
   for (const file of files) {
     if (file === 'index.mdx' || !file.endsWith('.mdx')) continue;
 
-    const filePath = path.join(typeDir, file);
+    const filePath = path.join(CONTENT_DIR, file);
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const { data } = matter(fileContent);
 
