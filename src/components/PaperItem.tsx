@@ -5,9 +5,10 @@ import dayjs from 'dayjs';
 import { getArxivSubjectName } from '@/lib/arxiv-subjects';
 import { ContentItem } from '@/lib/content';
 
-import { Language, useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 import Card from './Card';
+import LanguageSwitcher from './LanguageSwitcher';
 import Tags from './Tags';
 
 interface PaperItemProps {
@@ -15,7 +16,7 @@ interface PaperItemProps {
 }
 
 export default function PaperItem({ data }: PaperItemProps) {
-  const { language, setLanguage } = useLanguage();
+  const { language } = useLanguage();
 
   const hasZhContent = Boolean(
     typeof data.arxiv?.description === 'object'
@@ -27,12 +28,6 @@ export default function PaperItem({ data }: PaperItemProps) {
       ? data.arxiv.description?.en
       : data.arxiv?.description,
   );
-
-  const handleLanguageChange = (lang: Language) => {
-    if ((lang === 'zh' && hasZhContent) || (lang === 'en' && hasEnContent)) {
-      setLanguage(lang);
-    }
-  };
 
   const getDescription = () => {
     if (typeof data.arxiv?.description === 'object') {
@@ -52,33 +47,11 @@ export default function PaperItem({ data }: PaperItemProps) {
 
   return (
     <Card data={data} href={`/papers/${data.slug}`}>
-      <div className="absolute top-4 right-4 flex gap-1">
-        <button
-          onClick={() => {
-            handleLanguageChange('zh');
-          }}
-          disabled={!hasZhContent}
-          className={`px-2 py-1 text-xs border transition-colors ${
-            language === 'zh'
-              ? 'bg-black text-white border-black'
-              : 'bg-white text-zinc-600 border-zinc-300 hover:border-zinc-400'
-          } ${!hasZhContent ? 'opacity-40 cursor-not-allowed' : ''}`}
-        >
-          中文
-        </button>
-        <button
-          onClick={() => {
-            handleLanguageChange('en');
-          }}
-          disabled={!hasEnContent}
-          className={`px-2 py-1 text-xs border transition-colors ${
-            language === 'en'
-              ? 'bg-black text-white border-black'
-              : 'bg-white text-zinc-600 border-zinc-300 hover:border-zinc-400'
-          } ${!hasEnContent ? 'opacity-40 cursor-not-allowed' : ''}`}
-        >
-          EN
-        </button>
+      <div className="absolute top-4 right-4">
+        <LanguageSwitcher
+          hasZhContent={hasZhContent}
+          hasEnContent={hasEnContent}
+        />
       </div>
       <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
         <span>{dayjs(data.date).format('YYYY-MM-DD')}</span>
