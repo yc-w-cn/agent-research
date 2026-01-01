@@ -1,6 +1,7 @@
 import { Star } from 'lucide-react';
 
 import { ContentItem } from '@/lib/content';
+import { formatStars } from '@/lib/utils';
 
 import Card from './Card';
 import GitHubIcon from './GitHubIcon';
@@ -8,13 +9,6 @@ import Tags from './Tags';
 
 interface CodeItemProps {
   data: ContentItem;
-}
-
-function formatStars(stars: number): string {
-  if (stars >= 1000) {
-    return `${(stars / 1000).toFixed(1)}k`;
-  }
-  return stars.toString();
 }
 
 export default function CodeItem({ data }: CodeItemProps) {

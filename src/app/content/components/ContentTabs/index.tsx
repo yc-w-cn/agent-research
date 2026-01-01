@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 import { ContentData } from '@/lib/content';
 
-import ContentPaper from '../ContentPaper';
 import CodeContent from './CodeContent';
+import PaperContent from './PaperContent';
 import ResourcesContent from './ResourcesContent';
 import TabButton from './TabButton';
 
@@ -29,6 +29,7 @@ export default function ContentTabs({ content }: ContentTabsProps) {
           label="论文"
           isActive={activeTab === 'paper'}
           hasContent={hasPaper}
+          isFirst={true}
           isLast={false}
           onClick={() => {
             setActiveTab('paper');
@@ -38,6 +39,7 @@ export default function ContentTabs({ content }: ContentTabsProps) {
           label="代码"
           isActive={activeTab === 'code'}
           hasContent={hasCode}
+          isFirst={false}
           isLast={false}
           onClick={() => {
             setActiveTab('code');
@@ -47,6 +49,7 @@ export default function ContentTabs({ content }: ContentTabsProps) {
           label="相关资源"
           isActive={activeTab === 'resources'}
           hasContent={hasResources}
+          isFirst={false}
           isLast={true}
           onClick={() => {
             setActiveTab('resources');
@@ -54,8 +57,8 @@ export default function ContentTabs({ content }: ContentTabsProps) {
         />
       </div>
 
-      <div className="p-6 bg-zinc-50 border border-zinc-300 mt-4">
-        {activeTab === 'paper' && <ContentPaper content={content} />}
+      <div className=" bg-zinc-50 mt-4">
+        {activeTab === 'paper' && <PaperContent content={content} />}
         {activeTab === 'code' && content.github && (
           <CodeContent github={content.github} />
         )}

@@ -6,7 +6,7 @@ interface ResourcesContentProps {
 
 export default function ResourcesContent({ resources }: ResourcesContentProps) {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 p-6">
       {resources.map((resource, index) => (
         <a
           key={index}

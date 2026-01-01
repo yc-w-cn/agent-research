@@ -10,11 +10,11 @@ import { ContentData } from '@/lib/content';
 
 import { useLanguage } from '@/contexts/LanguageContext';
 
-interface ContentPaperProps {
+interface PaperContentProps {
   content: ContentData;
 }
 
-export default function ContentPaper({ content }: ContentPaperProps) {
+export default function PaperContent({ content }: PaperContentProps) {
   const { language } = useLanguage();
 
   const hasZhDescription = Boolean(
