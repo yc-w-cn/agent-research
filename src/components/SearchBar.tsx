@@ -47,11 +47,10 @@ export default function SearchBar({
   };
 
   const getItemType = (item: ContentItem) => {
-    if (item.arxiv) return { label: '论文', path: '/papers' };
-    if (item.github) return { label: '代码', path: '/code' };
-    if (item.related && item.related.length > 0)
-      return { label: '资源', path: '/resources' };
-    return { label: '资源', path: '/resources' };
+    if (item.arxiv) return { label: '论文' };
+    if (item.github) return { label: '代码' };
+    if (item.related && item.related.length > 0) return { label: '资源' };
+    return { label: '资源' };
   };
 
   return (
@@ -72,11 +71,11 @@ export default function SearchBar({
       {results.length > 0 && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-zinc-200 shadow-lg z-50 max-h-96 overflow-y-auto">
           {results.map((item) => {
-            const { label, path } = getItemType(item);
+            const { label } = getItemType(item);
             return (
               <Link
                 key={item.slug}
-                href={`${path}/${item.slug}`}
+                href={`/content/${item.slug}`}
                 className="block px-4 py-3 hover:bg-zinc-50 transition-colors border-b border-zinc-100 last:border-b-0"
               >
                 <div className="flex items-start gap-3">
