@@ -82,7 +82,9 @@ Agentic-RAG explores advanced Retrieval-Augmented Generation systems enhanced wi
 | arxiv | object | 否 | arXiv 论文信息（有此字段会自动显示在 papers 页面） |
 | arxiv.id | string | 否（arxiv存在时必填） | arXiv 论文编号 |
 | arxiv.subjects | array | 否 | arXiv 论文主题分类 |
-| arxiv.description | string | 否 | arXiv 论文描述 |
+| arxiv.description | string 或 object | 否 | arXiv 论文描述，可以是字符串或包含 zh/en 的对象 |
+| arxiv.description.zh | string | 否 | arXiv 论文中文描述（当 description 为对象时使用） |
+| arxiv.description.en | string | 否 | arXiv 论文英文描述（当 description 为对象时使用） |
 | github | object | 否 | GitHub 仓库信息（有此字段会自动显示在 code 页面） |
 | github.name | string | 否（github存在时必填） | GitHub 仓库名称 |
 | github.description | string | 否 | GitHub 仓库描述（支持多行文本） |
@@ -92,6 +94,44 @@ Agentic-RAG explores advanced Retrieval-Augmented Generation systems enhanced wi
 | related[].title | string | 否 | 相关资源标题 |
 | related[].url | string | 否 | 相关资源链接 |
 | related[].description | string | 否 | 相关资源描述 |
+
+### 多语言描述规范
+
+`arxiv.description` 字段支持两种格式：
+
+#### 格式 1：字符串（单语言）
+
+```mdx
+arxiv:
+  id: 2501.09136
+  description: |
+    Large Language Models (LLMs) have revolutionized artificial intelligence (AI) by enabling human like text generation and natural language understanding.
+```
+
+#### 格式 2：对象（多语言）
+
+```mdx
+arxiv:
+  id: 2501.09136
+  description:
+    zh: |
+      大语言模型（LLM）通过实现类似人类的文本生成和自然语言理解，彻底改变了人工智能（AI）领域。然而，它们对静态训练数据的依赖限制了其响应动态实时查询的能力，导致输出过时或不准确。检索增强生成（RAG）作为一种解决方案出现，通过集成实时数据检索来增强 LLM，提供上下文相关且最新的响应。尽管前景广阔，但传统的 RAG 系统受限于静态工作流，缺乏多步推理和复杂任务管理所需的适应性。
+      Agentic 检索增强生成（Agentic RAG）通过将自主 AI 代理嵌入 RAG 流程超越了这些限制。这些代理利用 Agentic 设计模式——反思、规划、工具使用和多代理协作——动态管理检索策略，迭代优化上下文理解，并调整工作流程以满足复杂任务要求。这种集成使 Agentic RAG 系统能够在各种应用中提供无与伦比的灵活性、可扩展性和上下文感知能力。
+    en: |
+      Large Language Models (LLMs) have revolutionized artificial intelligence (AI) by enabling human like text generation and natural language understanding. However, their reliance on static training data limits their ability to respond to dynamic, real time queries, resulting in outdated or inaccurate outputs. Retrieval Augmented Generation (RAG) has emerged as a solution, enhancing LLMs by integrating real time data retrieval to provide contextually relevant and up-to-date responses. Despite its promise, traditional RAG systems are constrained by static workflows and lack the adaptability required for multistep reasoning and complex task management.
+      Agentic Retrieval-Augmented Generation (Agentic RAG) transcends these limitations by embedding autonomous AI agents into the RAG pipeline. These agents leverage agentic design patterns reflection, planning, tool use, and multiagent collaboration to dynamically manage retrieval strategies, iteratively refine contextual understanding, and adapt workflows to meet complex task requirements. This integration enables Agentic RAG systems to deliver unparalleled flexibility, scalability, and context awareness across diverse applications.
+```
+
+**规则说明：**
+- `description` 可以是字符串（单语言）或对象（多语言）
+- 当使用对象格式时，包含 `zh` 和 `en` 两个可选属性
+- 两个字段都是可选的，但建议同时提供以支持双语切换
+- 如果只提供一种语言的描述，对应的语言切换按钮将被禁用
+- 如果 description 是字符串，则不显示语言切换按钮
+- 在论文列表中，用户可以通过右上角的语言切换按钮在中文和英文描述之间切换
+- 选中状态：黑色背景、白色文字
+- 未选中状态：白色背景、灰色边框
+- 禁用状态：半透明、不可点击
 
 ### 自动分类规则
 

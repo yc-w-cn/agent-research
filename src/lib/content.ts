@@ -1,9 +1,14 @@
 export type ContentType = 'paper' | 'code' | 'resource';
 
+export interface ArxivDescription {
+  zh?: string;
+  en?: string;
+}
+
 export interface ArxivInfo {
   id: string;
   subjects?: string[];
-  description?: string;
+  description?: string | ArxivDescription;
 }
 
 export interface GithubInfo {
