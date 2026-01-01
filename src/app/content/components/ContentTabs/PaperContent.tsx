@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+
 import { ChevronRightIcon } from 'lucide-react';
 
 import DescriptionText from '@/components/DescriptionText';
@@ -7,15 +9,14 @@ import DetailLanguageSwitcher from '@/components/DetailLanguageSwitcher';
 import Tags from '@/components/Tags';
 import { getArxivSubjectName } from '@/lib/arxiv-subjects';
 import { ContentData } from '@/lib/content';
-
-import { useLanguage } from '@/contexts/LanguageContext';
+import { Language } from '@/lib/language';
 
 interface PaperContentProps {
   content: ContentData;
 }
 
 export default function PaperContent({ content }: PaperContentProps) {
-  const { language } = useLanguage();
+  const [language, setLanguage] = useState<Language>('zh');
 
   const hasZhDescription = Boolean(
     typeof content.arxiv?.description === 'object'

@@ -1,8 +1,7 @@
 'use client';
 
+import { Language } from '@/lib/language';
 import { cn } from '@/lib/utils';
-
-import { Language } from '@/contexts/LanguageContext';
 
 interface LanguageSwitcherProps {
   hasZhContent: boolean;

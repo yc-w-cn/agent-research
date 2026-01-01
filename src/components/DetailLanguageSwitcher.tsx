@@ -1,8 +1,9 @@
 'use client';
 
-import { cn } from '@/lib/utils';
+import { useState } from 'react';
 
-import { Language, useLanguage } from '@/contexts/LanguageContext';
+import { Language } from '@/lib/language';
+import { cn } from '@/lib/utils';
 
 interface DetailLanguageSwitcherProps {
   hasZhContent: boolean;
@@ -13,7 +14,7 @@ export default function DetailLanguageSwitcher({
   hasZhContent,
   hasEnContent,
 }: DetailLanguageSwitcherProps) {
-  const { language, setLanguage } = useLanguage();
+  const [language, setLanguage] = useState<Language>('zh');
 
   const handleLanguageChange = (lang: Language) => {
     if ((lang === 'zh' && hasZhContent) || (lang === 'en' && hasEnContent)) {
