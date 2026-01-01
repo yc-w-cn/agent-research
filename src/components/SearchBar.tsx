@@ -9,9 +9,13 @@ import type { ContentItem } from '@/lib/content';
 
 interface SearchBarProps {
   items: ContentItem[];
+  placeholder?: string;
 }
 
-export default function SearchBar({ items }: SearchBarProps) {
+export default function SearchBar({
+  items,
+  placeholder = '搜索论文、代码或资源...',
+}: SearchBarProps) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<ContentItem[]>([]);
 
@@ -60,7 +64,7 @@ export default function SearchBar({ items }: SearchBarProps) {
           onChange={(e) => {
             handleSearch(e.target.value);
           }}
-          placeholder="搜索论文、代码或资源..."
+          placeholder={placeholder}
           className="w-full pl-12 pr-4 py-3 border border-zinc-200 focus:border-black focus:outline-none transition-colors"
         />
       </div>

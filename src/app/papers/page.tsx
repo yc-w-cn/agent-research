@@ -11,6 +11,7 @@ export default async function PapersPage() {
       description="探索最新的 Agent 领域研究成果"
       items={papers}
       renderItem={(data) => <PaperItem data={data} />}
+      searchPlaceholder="搜索学术论文..."
     />
   );
 }

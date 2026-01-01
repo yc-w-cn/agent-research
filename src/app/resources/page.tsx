@@ -11,6 +11,7 @@ export default async function ResourcesPage() {
       description="汇总 Agent 研究所需的各类资源"
       items={resources}
       renderItem={(data) => <ResourceItem data={data} />}
+      searchPlaceholder="搜索相关资源..."
     />
   );
 }

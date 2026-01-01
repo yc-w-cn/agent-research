@@ -11,6 +11,7 @@ export default async function CodePage() {
       description="收集整理高质量的 Agent 相关开源项目"
       items={code}
       renderItem={(data) => <CodeItem data={data} />}
+      searchPlaceholder="搜索开源代码..."
     />
   );
 }
