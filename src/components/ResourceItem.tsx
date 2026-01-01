@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import dayjs from 'dayjs';
+
 import { ContentItem } from '@/lib/content';
 
 interface ResourceItemProps {
@@ -13,7 +15,7 @@ export default function ResourceItem({ data }: ResourceItemProps) {
         {data.title}
       </h3>
       <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
-        <span>{data.date}</span>
+        <span>{dayjs(data.date).format('YYYY-MM-DD')}</span>
       </div>
       {data.tags && data.tags.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-2">

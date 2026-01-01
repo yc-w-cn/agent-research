@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import dayjs from 'dayjs';
+
 import { ContentItem } from '@/lib/content';
 
 interface PaperItemProps {
@@ -15,7 +17,7 @@ export default function PaperItem({ data }: PaperItemProps) {
         </h3>
       </Link>
       <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
-        <span>{data.date}</span>
+        <span>{dayjs(data.date).format('YYYY-MM-DD')}</span>
         {data.arxiv && (
           <a
             href={`https://arxiv.org/abs/${data.arxiv}`}

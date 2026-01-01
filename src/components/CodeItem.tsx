@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import dayjs from 'dayjs';
+
 import { ContentItem } from '@/lib/content';
 
 interface CodeItemProps {
@@ -13,7 +15,7 @@ export default function CodeItem({ data }: CodeItemProps) {
         {data.title}
       </h3>
       <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
-        <span>{data.date}</span>
+        <span>{dayjs(data.date).format('YYYY-MM-DD')}</span>
         {data.github && (
           <a
             href={`https://github.com/${data.github}`}
