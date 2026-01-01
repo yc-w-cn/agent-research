@@ -16,13 +16,13 @@ export default function ContentDetailPage({ content }: ContentDetailPageProps) {
     <div className="min-h-screen bg-white text-black">
       <Navigation />
 
-      <main className="mx-auto max-w-5xl px-8 py-16">
+      <main className="mx-auto max-w-5xl px-6 py-12">
         <article>
-          <header className="mb-16">
-            <h1 className="text-5xl font-bold tracking-tight leading-none mb-6">
+          <header className="mb-10">
+            <h1 className="text-4xl font-bold tracking-tight leading-tight mb-4">
               {content.title}
             </h1>
-            <div className="flex items-center gap-4 text-sm text-zinc-600">
+            <div className="flex items-center gap-3 text-sm text-zinc-600">
               <span>{dayjs(content.date).format('YYYY-MM-DD')}</span>
               {content.arxiv && (
                 <a
@@ -46,16 +46,16 @@ export default function ContentDetailPage({ content }: ContentDetailPageProps) {
               )}
               {content.github?.stars && (
                 <span className="flex items-center gap-1">
-                  ⭐ {content.github.stars}
+                  {content.github.stars}
                 </span>
               )}
             </div>
             {content.github?.tags && content.github.tags.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-3 flex flex-wrap gap-2">
                 {content.github.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs px-3 py-1 bg-zinc-100 text-zinc-600"
+                    className="text-xs px-2 py-1 bg-zinc-100 text-zinc-600"
                   >
                     {tag}
                   </span>
@@ -63,10 +63,10 @@ export default function ContentDetailPage({ content }: ContentDetailPageProps) {
               </div>
             )}
             {externalUrl && (
-              <div className="mt-6">
+              <div className="mt-4">
                 <a
                   href={externalUrl}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white hover:bg-zinc-800 transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2 text-sm bg-black text-white hover:bg-zinc-800 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -79,11 +79,11 @@ export default function ContentDetailPage({ content }: ContentDetailPageProps) {
           <MDXContent content={content.content} />
 
           {content.related && content.related.length > 0 && (
-            <section className="mt-16 pt-8 border-t border-zinc-200">
-              <h2 className="text-2xl font-bold tracking-tight mb-6">
+            <section className="mt-12 pt-6 border-t border-zinc-200">
+              <h2 className="text-xl font-bold tracking-tight mb-4">
                 相关资源
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {content.related.map((resource, index) => (
                   <a
                     key={index}
@@ -92,7 +92,7 @@ export default function ContentDetailPage({ content }: ContentDetailPageProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
+                    <h3 className="text-base font-medium group-hover:text-zinc-600 transition-colors">
                       {resource.title}
                     </h3>
                   </a>
