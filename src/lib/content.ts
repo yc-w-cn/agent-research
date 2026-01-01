@@ -1,5 +1,3 @@
-// 需要安装依赖：pnpm add gray-matter
-
 export type ContentType = 'paper' | 'code' | 'resource';
 
 export interface ContentItem {
