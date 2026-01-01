@@ -1,0 +1,74 @@
+---
+title: "Parameters vs. Context: Fine-Grained Control of Knowledge Reliance in Language Models"
+categories:
+  - retrieval-augmented-generation
+  - knowledge-reliance
+  - rag
+date: 2025-03-20
+arxiv:
+  id: 2503.15888
+  subjects:
+    - cs.CL
+    - cs.AI
+  description:
+    zh: |
+      检索增强生成（RAG）通过集成外部知识缓解了大语言模型（LLM）的幻觉问题。然而，参数知识与检索上下文之间的冲突带来了挑战，特别是当检索信息不可靠或模型内部知识过时时。在这种情况下，LLM 难以确定是更多地依赖自身参数还是冲突的上下文。
+      为了解决这一问题，本文提出了 CK-PLUG，一种即插即用的方法，用于控制 LLM 对参数知识和上下文知识的依赖。我们引入了一种新的知识一致性度量——置信度增益（Confidence Gain），它通过测量上下文插入后 token 概率分布的熵变化来检测知识冲突。CK-PLUG 然后通过单个调优参数调整具有负置信度增益的 token 的概率分布，从而实现对知识偏好的细粒度控制。
+      实验证明 CK-PLUG 能够在反事实 RAG 场景中显著调节知识依赖，同时保持生成流畅性和知识准确性。例如，在 Llama3-8B 上，RAG 响应的记忆召回率（MR）可以在 9.9%-71.9% 的宽范围内调整，而基线为 42.1%。此外，CK-PLUG 支持基于模型对内部和外部知识置信度的自适应控制，在各种通用 RAG 任务中实现了一致的性能提升。
+    en: |
+      Retrieval-Augmented Generation (RAG) mitigates hallucinations in Large Language Models (LLMs) by integrating external knowledge. However, conflicts between parametric knowledge and retrieved context pose challenges, particularly when retrieved information is unreliable or the model's internal knowledge is outdated. In such cases, LLMs struggle to determine whether to rely more on their own parameters or the conflicted context.
+      To address this, we propose CK-PLUG, a plug-and-play method for controlling LLMs' reliance on parametric and contextual knowledge. We introduce a novel knowledge consistency metric, Confidence Gain, which detects knowledge conflicts by measuring entropy shifts in token probability distributions after context insertion. CK-PLUG then enables fine-grained control over knowledge preference by adjusting the probability distribution of tokens with negative confidence gain through a single tuning parameter.
+      Experiments demonstrate CK-PLUG's ability to significantly regulate knowledge reliance in counterfactual RAG scenarios while maintaining generation fluency and knowledge accuracy. For instance, on Llama3-8B, memory recall (MR) of RAG response can be adjusted within a broad range (9.9%-71.9%), compared to the baseline of 42.1%. Moreover, CK-PLUG supports adaptive control based on the model's confidence in both internal and external knowledge, achieving consistent performance improvements across various general RAG tasks.
+github:
+  name: baolongbi/CK-PLUG
+  description: "CK-PLUG: Fine-Grained Control of Knowledge Reliance in Language Models"
+  tags:
+    - rag
+    - knowledge-reliance
+    - llm
+    - retrieval
+---
+
+## 作者
+
+Baolong Bi, Shenghua Liu, Yiwei Wang, Yilong Xu, Junfeng Fang, Lingrui Mei, Xueqi Cheng
+
+## 概述
+
+CK-PLUG 是一种即插即用的方法，用于控制大语言模型对参数知识和上下文知识的依赖程度。
+
+## 核心内容
+
+### 置信度增益（Confidence Gain）
+
+通过测量上下文插入前后 token 概率分布的熵变化来检测知识冲突：
+- 正置信度增益：上下文与模型内部知识一致
+- 负置信度增益：上下文与模型内部知识冲突
+
+### 知识依赖控制
+
+通过单个调优参数调整具有负置信度增益的 token 的概率分布，实现对知识偏好的细粒度控制。
+
+## 关键特性
+
+### 即插即用
+无需重新训练模型，可直接应用于现有的 LLM。
+
+### 细粒度控制
+可以在 9.9%-71.9% 的宽范围内调节记忆召回率。
+
+### 自适应控制
+支持基于模型对内部和外部知识置信度的自适应控制。
+
+## 实验结果
+
+在 Llama3-8B 上的实验表明：
+- 基线记忆召回率：42.1%
+- CK-PLUG 可调范围：9.9%-71.9%
+- 保持生成流畅性和知识准确性
+
+## 相关资源
+
+- [arXiv 论文](https://arxiv.org/abs/2503.15888)
+- [DOI 链接](https://doi.org/10.48550/arXiv.2503.15888)
+- [GitHub 代码](https://github.com/baolongbi/CK-PLUG)
