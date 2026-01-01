@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 
 import Footer from '@/components/Footer';
+import { cn } from '@/lib/utils';
 
 import { LanguageProvider } from '@/contexts/LanguageContext';
 
@@ -29,9 +30,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="zh-CN">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(geistSans.variable, geistMono.variable, 'antialiased')}
       >
         <LanguageProvider>
           <div className="flex min-h-screen flex-col">
