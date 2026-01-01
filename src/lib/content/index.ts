@@ -1,6 +1,5 @@
 import './init';
 
-export * from './map';
-export { relatedResourcesMap } from './map';
+export * from './client';
 export * from './repository';
 export * from './types';

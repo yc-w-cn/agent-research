@@ -1,10 +1,8 @@
-import dayjs from 'dayjs';
-
+import { ContentItem } from '@/lib/content';
 import {
-  ContentItem,
   getRelatedResourceInfo,
   getRelatedResourceUrl,
-} from '@/lib/content';
+} from '@/lib/content/client';
 
 import Card from './Card';
 

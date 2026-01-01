@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import ContentDetailPage from '@/components/ContentDetailPage';
+import ContentDetailPageWrapper from '@/components/ContentDetailPageWrapper';
 import { getAllContent, getContentBySlug } from '@/lib/content';
 
 export async function generateStaticParams() {
@@ -19,5 +19,5 @@ export default async function ContentPage({
     notFound();
   }
 
-  return <ContentDetailPage content={content} />;
+  return <ContentDetailPageWrapper content={content} />;
 }

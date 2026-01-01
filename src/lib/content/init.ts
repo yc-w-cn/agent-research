@@ -1,3 +1,3 @@
-import { buildRelatedResourcesMap } from './map';
+import { buildRelatedResourcesMap } from './repository';
 
 buildRelatedResourcesMap();

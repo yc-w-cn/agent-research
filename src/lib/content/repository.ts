@@ -1,15 +1,57 @@
 import fs from 'fs';
 
 import { buildContentData, buildContentItem } from './builder';
+import { setRelatedResourcesMap } from './client';
 import { CONTENT_DIR } from './constants';
-import { getRelatedResourceInfo } from './map';
 import { parseMdxFile } from './parser';
-import type { ContentData, ContentItem, ContentType } from './types';
+import type {
+  ContentData,
+  ContentItem,
+  ContentType,
+  RelatedResource,
+} from './types';
 import { isIndexFile, isMdxFile, sortContentByDate } from './utils';
+
+let isMapInitialized = false;
+
+export function buildRelatedResourcesMap() {
+  if (isMapInitialized) return;
+
+  const relatedResourcesMap = new Map<
+    string,
+    { parentSlug: string; related: RelatedResource }
+  >();
+
+  const files = fs.readdirSync(CONTENT_DIR);
+
+  for (const file of files) {
+    if (isIndexFile(file) || !isMdxFile(file)) continue;
+
+    const { slug, data } = parseMdxFile(file);
+
+    if (data.related && Array.isArray(data.related)) {
+      data.related.forEach((related: RelatedResource, index: number) => {
+        const relatedSlug = `${slug}-related-${index}`;
+        relatedResourcesMap.set(relatedSlug, { parentSlug: slug, related });
+      });
+    }
+  }
+
+  setRelatedResourcesMap(relatedResourcesMap);
+  isMapInitialized = true;
+}
+
+function ensureMapInitialized() {
+  if (!isMapInitialized) {
+    buildRelatedResourcesMap();
+  }
+}
 
 export async function getContentByType(
   type: ContentType,
 ): Promise<ContentItem[]> {
+  ensureMapInitialized();
+
   if (!fs.existsSync(CONTENT_DIR)) {
     return [];
   }
@@ -51,6 +93,9 @@ export async function getContentByType(
 export async function getContentBySlug(
   slug: string,
 ): Promise<ContentData | null> {
+  ensureMapInitialized();
+
+  const { getRelatedResourceInfo } = await import('./client');
   const relatedInfo = getRelatedResourceInfo(slug);
 
   if (relatedInfo) {
