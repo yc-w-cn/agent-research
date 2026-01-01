@@ -50,14 +50,12 @@ export default async function PapersPage() {
               </h2>
               <div className="space-y-6">
                 {items.map((paper) => (
-                  <Link
-                    key={paper.slug}
-                    href={`/papers/${paper.slug}`}
-                    className="group block"
-                  >
-                    <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-                      {paper.title}
-                    </h3>
+                  <div key={paper.slug} className="group">
+                    <Link href={`/papers/${paper.slug}`} className="block">
+                      <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
+                        {paper.title}
+                      </h3>
+                    </Link>
                     <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
                       <span>{paper.date}</span>
                       {paper.arxiv && (
@@ -93,7 +91,7 @@ export default async function PapersPage() {
                         ))}
                       </div>
                     )}
-                  </Link>
+                  </div>
                 ))}
               </div>
             </div>
