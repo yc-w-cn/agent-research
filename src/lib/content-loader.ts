@@ -7,10 +7,16 @@ import type { ContentData, ContentItem, ContentType } from './content';
 
 const CONTENT_DIR = path.join(process.cwd(), 'src', 'content');
 
+const TYPE_TO_DIR: Record<ContentType, string> = {
+  paper: 'papers',
+  code: 'code',
+  resource: 'resources',
+};
+
 export async function getContentByType(
   type: ContentType,
 ): Promise<ContentItem[]> {
-  const typeDir = path.join(CONTENT_DIR, type);
+  const typeDir = path.join(CONTENT_DIR, TYPE_TO_DIR[type]);
 
   if (!fs.existsSync(typeDir)) {
     return [];
@@ -49,7 +55,7 @@ export async function getContentBySlug(
   type: ContentType,
   slug: string,
 ): Promise<ContentData | null> {
-  const filePath = path.join(CONTENT_DIR, type, `${slug}.mdx`);
+  const filePath = path.join(CONTENT_DIR, TYPE_TO_DIR[type], `${slug}.mdx`);
 
   if (!fs.existsSync(filePath)) {
     return null;
@@ -69,7 +75,7 @@ export async function getContentBySlug(
     github: data.github,
     stars: data.stars,
     related: data.related || [],
-    mdxPath: `@/content/${type}/${slug}.mdx`,
+    mdxPath: `@/content/${TYPE_TO_DIR[type]}/${slug}.mdx`,
   };
 }
 
