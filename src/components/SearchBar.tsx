@@ -17,18 +17,24 @@ export default function SearchBar({ items }: SearchBarProps) {
 
   const handleSearch = (value: string) => {
     setQuery(value);
-    if (!value.trim()) {
+    const trimmedValue = value.trim();
+
+    if (!trimmedValue) {
       setResults([]);
       return;
     }
 
-    const lowerQuery = value.toLowerCase();
+    const lowerQuery = trimmedValue.toLowerCase();
     const filtered = items.filter((item) => {
-      return (
-        item.title.toLowerCase().includes(lowerQuery) ||
-        item.category.toLowerCase().includes(lowerQuery) ||
-        item.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery))
-      );
+      const titleMatch =
+        item.title?.toLowerCase().includes(lowerQuery) ?? false;
+      const categoryMatch =
+        item.category?.toLowerCase().includes(lowerQuery) ?? false;
+      const tagsMatch =
+        item.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery)) ??
+        false;
+
+      return titleMatch || categoryMatch || tagsMatch;
     });
     setResults(filtered);
   };
