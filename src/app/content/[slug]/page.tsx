@@ -6,7 +6,10 @@ import { getAllContent, getContentBySlug } from '@/lib/content';
 import ContentDetailPage from '../components/ContentDetailPage';
 
 export async function generateStaticParams() {
-  return getAllContent();
+  const allContent = await getAllContent();
+  return allContent.map((item) => ({
+    slug: item.slug,
+  }));
 }
 
 export async function generateMetadata({

@@ -70,7 +70,7 @@ export async function getContentByType(
       (type === 'code' && item.github) ||
       (type === 'resource' && item.related && item.related.length > 0);
 
-    if (shouldInclude && type !== 'resource') {
+    if (shouldInclude) {
       items.push(item);
     }
 
