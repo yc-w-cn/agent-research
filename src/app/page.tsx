@@ -60,7 +60,7 @@ export default async function Home() {
             <div className="h-1 w-12 bg-black group-hover:w-16 transition-all" />
             <div className="flex items-baseline gap-3">
               <h2 className="text-2xl font-bold tracking-tight group-hover:text-zinc-600 transition-colors">
-                资源导航
+                相关资源
               </h2>
               <span className="text-sm text-zinc-400">{resources.length}</span>
             </div>
