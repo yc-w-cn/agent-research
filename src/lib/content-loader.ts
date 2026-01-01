@@ -32,18 +32,26 @@ export async function getContentByType(
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const { data } = matter(fileContent);
 
-    items.push({
+    const item: ContentItem = {
       slug: file.replace('.mdx', ''),
-      type,
       title: data.title || '',
-      category: data.category || '',
+      categories: data.categories || [],
       date: data.date ? String(data.date) : '',
       tags: data.tags || [],
       arxiv: data.arxiv,
       github: data.github,
       stars: data.stars,
       related: data.related || [],
-    });
+    };
+
+    const shouldInclude =
+      (type === 'paper' && item.arxiv) ||
+      (type === 'code' && item.github) ||
+      (type === 'resource' && item.related && item.related.length > 0);
+
+    if (shouldInclude) {
+      items.push(item);
+    }
   }
 
   return items.sort(
@@ -52,10 +60,9 @@ export async function getContentByType(
 }
 
 export async function getContentBySlug(
-  type: ContentType,
   slug: string,
 ): Promise<ContentData | null> {
-  const filePath = path.join(CONTENT_DIR, TYPE_TO_DIR[type], `${slug}.mdx`);
+  const filePath = path.join(CONTENT_DIR, `${slug}.mdx`);
 
   if (!fs.existsSync(filePath)) {
     return null;
@@ -66,9 +73,8 @@ export async function getContentBySlug(
 
   return {
     slug,
-    type,
     title: data.title || '',
-    category: data.category || '',
+    categories: data.categories || [],
     date: data.date ? String(data.date) : '',
     tags: data.tags || [],
     arxiv: data.arxiv,
@@ -81,14 +87,16 @@ export async function getContentBySlug(
 
 export async function getAllContent(): Promise<ContentItem[]> {
   const types: ContentType[] = ['paper', 'code', 'resource'];
-  const allContent: ContentItem[] = [];
+  const allContentMap = new Map<string, ContentItem>();
 
   for (const type of types) {
     const items = await getContentByType(type);
-    allContent.push(...items);
+    for (const item of items) {
+      allContentMap.set(item.slug, item);
+    }
   }
 
-  return allContent.sort(
+  return Array.from(allContentMap.values()).sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 }
@@ -100,7 +108,7 @@ export async function searchContent(query: string): Promise<ContentItem[]> {
   return allContent.filter((item) => {
     return (
       item.title.toLowerCase().includes(lowerQuery) ||
-      item.category.toLowerCase().includes(lowerQuery) ||
+      item.categories.some((cat) => cat.toLowerCase().includes(lowerQuery)) ||
       item.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery))
     );
   });

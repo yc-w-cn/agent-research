@@ -2,9 +2,8 @@ export type ContentType = 'paper' | 'code' | 'resource';
 
 export interface ContentItem {
   slug: string;
-  type: ContentType;
   title: string;
-  category: string;
+  categories: string[];
   date: string;
   tags?: string[];
   arxiv?: string;
@@ -14,7 +13,6 @@ export interface ContentItem {
 }
 
 export interface RelatedResource {
-  type: 'note' | 'code' | 'paper' | 'resource';
   title: string;
   url: string;
 }

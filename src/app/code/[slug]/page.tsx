@@ -16,7 +16,7 @@ export default async function CodeDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const content = await getContentBySlug('code', slug);
+  const content = await getContentBySlug(slug);
 
   if (!content) {
     notFound();

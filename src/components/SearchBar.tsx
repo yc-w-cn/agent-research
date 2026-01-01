@@ -28,33 +28,25 @@ export default function SearchBar({ items }: SearchBarProps) {
     const filtered = items.filter((item) => {
       const titleMatch =
         item.title?.toLowerCase().includes(lowerQuery) ?? false;
-      const categoryMatch =
-        item.category?.toLowerCase().includes(lowerQuery) ?? false;
+      const categoriesMatch =
+        item.categories?.some((cat) =>
+          cat.toLowerCase().includes(lowerQuery),
+        ) ?? false;
       const tagsMatch =
         item.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery)) ??
         false;
 
-      return titleMatch || categoryMatch || tagsMatch;
+      return titleMatch || categoriesMatch || tagsMatch;
     });
     setResults(filtered);
   };
 
-  const getTypeLabel = (type: string) => {
-    const labels: Record<string, string> = {
-      paper: '论文',
-      code: '代码',
-      resource: '资源',
-    };
-    return labels[type] || type;
-  };
-
-  const getTypePath = (type: string) => {
-    const paths: Record<string, string> = {
-      paper: '/papers',
-      code: '/code',
-      resource: '/resources',
-    };
-    return paths[type] || '/';
+  const getItemType = (item: ContentItem) => {
+    if (item.arxiv) return { label: '论文', path: '/papers' };
+    if (item.github) return { label: '代码', path: '/code' };
+    if (item.related && item.related.length > 0)
+      return { label: '资源', path: '/resources' };
+    return { label: '资源', path: '/resources' };
   };
 
   return (
@@ -74,29 +66,32 @@ export default function SearchBar({ items }: SearchBarProps) {
 
       {results.length > 0 && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-zinc-200 shadow-lg z-50 max-h-96 overflow-y-auto">
-          {results.map((item) => (
-            <Link
-              key={`${item.type}-${item.slug}`}
-              href={`${getTypePath(item.type)}/${item.slug}`}
-              className="block px-4 py-3 hover:bg-zinc-50 transition-colors border-b border-zinc-100 last:border-b-0"
-            >
-              <div className="flex items-start gap-3">
-                <span className="text-xs text-zinc-500 uppercase tracking-wide mt-1">
-                  {getTypeLabel(item.type)}
-                </span>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-sm text-black">
-                    {item.title}
-                  </h3>
-                  {item.category && (
-                    <p className="text-xs text-zinc-500 mt-1">
-                      {item.category}
-                    </p>
-                  )}
+          {results.map((item) => {
+            const { label, path } = getItemType(item);
+            return (
+              <Link
+                key={item.slug}
+                href={`${path}/${item.slug}`}
+                className="block px-4 py-3 hover:bg-zinc-50 transition-colors border-b border-zinc-100 last:border-b-0"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-xs text-zinc-500 uppercase tracking-wide mt-1">
+                    {label}
+                  </span>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-sm text-black">
+                      {item.title}
+                    </h3>
+                    {item.categories && item.categories.length > 0 && (
+                      <p className="text-xs text-zinc-500 mt-1">
+                        {item.categories.join(', ')}
+                      </p>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>

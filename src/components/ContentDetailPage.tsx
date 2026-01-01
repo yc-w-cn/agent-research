@@ -93,12 +93,6 @@ export default function ContentDetailPage({
                     <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
                       {resource.title}
                     </h3>
-                    <p className="text-sm text-zinc-600 mt-1">
-                      {resource.type === 'note' && '笔记'}
-                      {resource.type === 'code' && '代码'}
-                      {resource.type === 'paper' && '论文'}
-                      {resource.type === 'resource' && '资源'}
-                    </p>
                   </a>
                 ))}
               </div>
