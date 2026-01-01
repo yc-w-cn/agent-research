@@ -42,6 +42,7 @@ export function buildContentData(
     arxiv: data.arxiv
       ? {
           id: data.arxiv.id,
+          title: data.arxiv.title || '',
           subjects: data.arxiv.subjects || [],
           description: data.arxiv.description,
         }

@@ -1,5 +1,7 @@
 'use client';
 
+import { ChevronRightIcon } from 'lucide-react';
+
 import DescriptionText from '@/components/DescriptionText';
 import DetailLanguageSwitcher from '@/components/DetailLanguageSwitcher';
 import Tags from '@/components/Tags';
@@ -61,34 +63,36 @@ export default function ContentPaper({ content }: ContentPaperProps) {
           )}
         </div>
 
-        {content.arxiv && (
-          <div className="mb-4">
-            <a
-              href={`https://arxiv.org/abs/${content.arxiv.id}`}
-              className="text-base font-medium hover:text-zinc-600 transition-colors inline-block"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              arXiv:{content.arxiv.id}
-            </a>
-          </div>
-        )}
-
         {description && (
           <div className="text-base text-zinc-700 leading-relaxed">
             <DescriptionText text={description} />
           </div>
         )}
 
-        {content.arxiv &&
-          content.arxiv.subjects &&
-          content.arxiv.subjects.length > 0 && (
-            <Tags
-              tags={content.arxiv.subjects.map((subject) =>
-                getArxivSubjectName(subject),
-              )}
-            />
+        <div className="flex justify-between mt-4 items-end">
+          {content.arxiv &&
+            content.arxiv.subjects &&
+            content.arxiv.subjects.length > 0 && (
+              <Tags
+                tags={content.arxiv.subjects.map((subject) =>
+                  getArxivSubjectName(subject),
+                )}
+              />
+            )}
+          {content.arxiv && (
+            <div className="flex items-center">
+              <a
+                href={`https://arxiv.org/abs/${content.arxiv.id}`}
+                className="text-sm hover:text-zinc-600 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                arXiv:{content.arxiv.id}
+              </a>
+              <ChevronRightIcon className="w-3 h-3" strokeWidth={2} />
+            </div>
           )}
+        </div>
       </div>
     </div>
   );
