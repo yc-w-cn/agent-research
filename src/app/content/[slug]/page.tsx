@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 
-import ContentDetailPage from '@/components/ContentDetailPage';
 import { getAllContent, getContentBySlug } from '@/lib/content';
+
+import ContentDetailPage from '../components/ContentDetailPage';
 
 export async function generateStaticParams() {
   return getAllContent();

@@ -46,9 +46,9 @@ export default function ContentTableOfContents({
         目录
       </div>
       <nav className="space-y-2">
-        {tocItems.map((item) => (
+        {tocItems.map((item, index) => (
           <a
-            key={item.id}
+            key={`${item.id}-${index}`}
             href={`#${item.id}`}
             className={`block hover:text-zinc-600 transition-colors ${
               item.level === 1

@@ -1,10 +1,10 @@
 'use client';
 
+import Navigation from '@/components/Navigation';
 import { ContentData } from '@/lib/content';
 
-import ContentMain from '../app/content/components/ContentMain';
-import ContentSidebar from '../app/content/components/ContentSidebar';
-import Navigation from './Navigation';
+import ContentMain from './ContentMain';
+import ContentSidebar from './ContentSidebar';
 
 interface ContentDetailPageProps {
   content: ContentData;
