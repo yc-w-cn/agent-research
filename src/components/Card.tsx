@@ -10,7 +10,7 @@ interface CardProps {
 
 export default function Card({ data, href, children }: CardProps) {
   return (
-    <div className="bg-zinc-50 p-4 border border-transparent hover:border-black transition-colors cursor-pointer">
+    <div className="bg-zinc-50 p-4 border border-transparent hover:border-gray-400 transition-colors cursor-pointer">
       <Link href={href} className="block">
         <h3 className="text-lg font-semibold">{data.title}</h3>
       </Link>
