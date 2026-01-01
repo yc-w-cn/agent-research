@@ -84,7 +84,8 @@ Agentic-RAG explores advanced Retrieval-Augmented Generation systems enhanced wi
 | arxiv.subjects | array | 否 | arXiv 论文主题分类 |
 | arxiv.description | string | 否 | arXiv 论文描述 |
 | github | object | 否 | GitHub 仓库信息（有此字段会自动显示在 code 页面） |
-| github.repo | string | 否（github存在时必填） | GitHub 仓库路径 |
+| github.name | string | 否（github存在时必填） | GitHub 仓库名称 |
+| github.description | string | 否 | GitHub 仓库描述（支持多行文本） |
 | github.stars | number | 否 | GitHub 星标数 |
 | github.tags | array | 否 | GitHub 仓库标签 |
 | related | array | 否 | 相关资源列表（有此字段会自动显示在 resources 页面） |
@@ -146,7 +147,8 @@ src/content/agentbench.mdx
 ### 代码（Code）
 
 - 包含 `github` 对象字段
-- `github.repo`：GitHub 仓库路径
+- `github.name`：GitHub 仓库名称
+- `github.description`：仓库描述（可选，会在代码列表中显示）
 - `github.stars`：星标数（可选）
 - `github.tags`：仓库标签（可选）
 - 包含项目简介、主要特性、使用场景
