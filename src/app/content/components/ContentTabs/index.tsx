@@ -16,11 +16,12 @@ interface ContentTabsProps {
 }
 
 export default function ContentTabs({ content }: ContentTabsProps) {
-  const [activeTab, setActiveTab] = useState<TabType>('paper');
-
   const hasPaper = Boolean(content.arxiv);
   const hasCode = Boolean(content.github);
   const hasResources = Boolean(content.related && content.related.length > 0);
+
+  const defaultTab: TabType = hasPaper ? 'paper' : 'code';
+  const [activeTab, setActiveTab] = useState<TabType>(defaultTab);
 
   return (
     <div className="col-span-12 mb-8">
