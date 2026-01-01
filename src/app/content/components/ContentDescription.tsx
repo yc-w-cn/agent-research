@@ -1,19 +1,17 @@
 'use client';
 
+import DetailLanguageSwitcher from '@/components/DetailLanguageSwitcher';
 import { ContentData } from '@/lib/content';
 
 import { useLanguage } from '@/contexts/LanguageContext';
 
-import ContentDetailPage from './ContentDetailPage';
-import DetailLanguageSwitcher from './DetailLanguageSwitcher';
-
-interface ContentDetailPageWrapperProps {
+interface ContentDescriptionProps {
   content: ContentData;
 }
 
-export default function ContentDetailPageWrapper({
+export default function ContentDescription({
   content,
-}: ContentDetailPageWrapperProps) {
+}: ContentDescriptionProps) {
   const { language } = useLanguage();
 
   const hasZhDescription = Boolean(
@@ -43,17 +41,26 @@ export default function ContentDetailPageWrapper({
 
   const description = getDescription();
 
+  if (!description) {
+    return null;
+  }
+
   return (
-    <>
+    <div className="relative">
       {(hasZhDescription || hasEnDescription) && (
-        <div className="fixed top-20 right-6 z-50">
+        <div className="absolute -top-12 right-0 z-10">
           <DetailLanguageSwitcher
             hasZhContent={hasZhDescription}
             hasEnContent={hasEnDescription}
           />
         </div>
       )}
-      <ContentDetailPage content={content} description={description} />
-    </>
+      <div className="p-6 bg-zinc-50 border-l-2 border-black">
+        <div className="text-sm text-zinc-500 mb-2 uppercase tracking-wider">
+          论文简介
+        </div>
+        <p className="text-base text-zinc-700 leading-relaxed">{description}</p>
+      </div>
+    </div>
   );
 }
