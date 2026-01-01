@@ -63,10 +63,9 @@ export default async function PapersPage() {
                       {paper.arxiv && (
                         <a
                           href={`https://arxiv.org/abs/${paper.arxiv}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="hover:text-black transition-colors"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                          }}
                         >
                           arXiv:{paper.arxiv}
                         </a>
@@ -74,10 +73,9 @@ export default async function PapersPage() {
                       {paper.github && (
                         <a
                           href={`https://github.com/${paper.github}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="hover:text-black transition-colors"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                          }}
                         >
                           GitHub
                         </a>

@@ -75,7 +75,7 @@ export async function getContentBySlug(
     github: data.github,
     stars: data.stars,
     related: data.related || [],
-    mdxPath: `@/content/${TYPE_TO_DIR[type]}/${slug}.mdx`,
+    content,
   };
 }
 

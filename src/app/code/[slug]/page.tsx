@@ -1,7 +1,17 @@
+// 需要安装依赖：pnpm add next-mdx-remote
+
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import { getContentBySlug } from '@/lib/content-loader';
+import MDXContent from '@/components/MDXContent';
+import { getContentBySlug, getContentByType } from '@/lib/content-loader';
+
+export async function generateStaticParams() {
+  const codes = await getContentByType('code');
+  return codes.map((code) => ({
+    slug: code.slug,
+  }));
+}
 
 export default async function CodeDetailPage({
   params,
@@ -14,8 +24,6 @@ export default async function CodeDetailPage({
   if (!content) {
     notFound();
   }
-
-  const MDXContent = (await import(content.mdxPath)).default;
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -64,7 +72,7 @@ export default async function CodeDetailPage({
             )}
           </header>
 
-          <MDXContent />
+          <MDXContent content={content.content} />
 
           {content.related && content.related.length > 0 && (
             <section className="mt-16 pt-8 border-t border-zinc-200">

@@ -62,10 +62,9 @@ export default async function CodePage() {
                           {item.github && (
                             <a
                               href={`https://github.com/${item.github}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
                               className="hover:text-black transition-colors"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                              }}
                             >
                               GitHub
                             </a>

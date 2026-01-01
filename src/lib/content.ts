@@ -22,5 +22,5 @@ export interface RelatedResource {
 }
 
 export interface ContentData extends ContentItem {
-  mdxPath: string;
+  content: string;
 }
