@@ -10,7 +10,7 @@ interface CodeItemProps {
 
 export default function CodeItem({ data }: CodeItemProps) {
   return (
-    <div className="block">
+    <div className="block bg-zinc-50 p-4">
       <Link href={`/code/${data.slug}`} className="block">
         <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
           {data.title}

@@ -10,7 +10,7 @@ interface PaperItemProps {
 
 export default function PaperItem({ data }: PaperItemProps) {
   return (
-    <div>
+    <div className="bg-zinc-50 p-4">
       <Link href={`/papers/${data.slug}`} className="block">
         <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
           {data.title}
