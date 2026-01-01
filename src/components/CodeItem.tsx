@@ -3,20 +3,20 @@ import Link from 'next/link';
 import { ContentItem } from '@/lib/content';
 
 interface CodeItemProps {
-  contentItem: ContentItem;
+  data: ContentItem;
 }
 
-export default function CodeItem({ contentItem }: CodeItemProps) {
+export default function CodeItem({ data }: CodeItemProps) {
   return (
-    <Link href={`/code/${contentItem.slug}`} className="block">
+    <Link href={`/code/${data.slug}`} className="block">
       <h3 className="text-lg font-semibold group-hover:text-zinc-600 transition-colors">
-        {contentItem.title}
+        {data.title}
       </h3>
       <div className="mt-2 flex items-center gap-4 text-sm text-zinc-600">
-        <span>{contentItem.date}</span>
-        {contentItem.github && (
+        <span>{data.date}</span>
+        {data.github && (
           <a
-            href={`https://github.com/${contentItem.github}`}
+            href={`https://github.com/${data.github}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-black transition-colors"
@@ -24,15 +24,13 @@ export default function CodeItem({ contentItem }: CodeItemProps) {
             GitHub
           </a>
         )}
-        {contentItem.stars && (
-          <span className="flex items-center gap-1">
-            ⭐ {contentItem.stars}
-          </span>
+        {data.stars && (
+          <span className="flex items-center gap-1">⭐ {data.stars}</span>
         )}
       </div>
-      {contentItem.tags && contentItem.tags.length > 0 && (
+      {data.tags && data.tags.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-2">
-          {contentItem.tags.map((tag) => (
+          {data.tags.map((tag) => (
             <span
               key={tag}
               className="text-xs px-2 py-1 bg-zinc-100 text-zinc-600"

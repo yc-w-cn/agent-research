@@ -4,7 +4,7 @@ import { ContentItem } from '@/lib/content';
 
 import SearchBar from './SearchBar';
 
-interface ContentListProps {
+interface ContentPageProps {
   title: string;
   subtitle: string;
   description: string;
@@ -12,13 +12,13 @@ interface ContentListProps {
   renderItem: (item: ContentItem) => React.ReactNode;
 }
 
-export default function ContentList({
+export default function ContentPage({
   title,
   subtitle,
   description,
   items,
   renderItem,
-}: ContentListProps) {
+}: ContentPageProps) {
   return (
     <div className="min-h-screen bg-white text-black">
       <main className="mx-auto max-w-5xl px-8 py-32">
